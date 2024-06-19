@@ -1,6 +1,10 @@
 # MAT4400
 My notes on linear analysis and measure theory following the MAT4400 course at UiO during the spring of 2024. The notes are the texed version of what went on in the lectures, except for the proofs. Chapters are as follows, mostly everything of importance which we did in the lectures. There will probably be typos.
 
+
+The actual PDF is [here](MAT400_privnotes.pdf)
+
+
 ### Main body
   3. Sigma-algebras
   4. Measures
