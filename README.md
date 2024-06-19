@@ -1,5 +1,5 @@
 # MAT4400
-My notes on linear analysis and measure theory following the MAT4400 course at UiO during the spring of 2024. The notes are the texed version of what went on in the lectures, except for the proofs. Chapters are as follows, mostly everything of importance which we did in the lectures. There will probably be typos.
+My notes on linear analysis and measure theory following the MAT4400 course at UiO during the spring of 2024. The notes are the texed version of mostly everything of importance which we did in the lectures, except for the proofs. There will probably be typos and chapters are as follows:
 
 
 The actual PDF is [here](MAT_4400_privnotes.pdf)
