@@ -1,0 +1,81 @@
+\section{Radon-Nikodym theorem}
+Assume $(X,\B,\mu)$ is a measure space. Are there other measures on $(X,\B)$?
+\begin{example}
+    Take a measurable function $f:X\rightarrow [0,+\infty]$ and define $$\nu(A)=\int_A fd\mu \hspace{5mm}\text{for}\tmm A\in \B.$$
+    This is a measure by the monotone convergence theorem. We write $d\nu = fd\mu$.
+\end{example}
+\begin{proposition}
+    Assume $(X,\B)$ is a measurable space, $\mu$ and $\nu$ are $\sigma$-finite measures on $(X,\B)$. Then there exist $ N\in \B$ and a measurable
+    $f:X\rightarrow [0,+\infty)$ s.t. $\mu(N)=0$ and 
+    $$\nu(A) = \nu(A\cap N)+\int_A fd\mu \hspace{5mm} \forall A\in\B.$$
+
+\end{proposition}
+We can discard the term $\nu(A\cap N)$ as follows.
+
+\begin{definition}
+    Given measures $\mu$ and $\nu$ on $(X,\B)$, we say that $\nu$ is \underline{absolutely continuous} with respect to $\mu$ and write $\nu<<\mu$, if $\nu(A)=0$ whenever $A\in\B$ and $\mu(A)=0$.
+\end{definition}
+One can justify the name with the following lemma
+\begin{lemma}
+    Assume $\mu$ and $\nu$ are measures on $(X,\B)$, $\nu(X)<\infty$. Then $\nu<<\mu$ if and only if $\forall \epsilon>0$ there exists $\delta>0 $ s.t. if $A\in\B$
+    and $\mu(A)<\delta$, then $\nu(A)<\epsilon$.
+\end{lemma}
+\begin{remark}
+    The result is not true for infinite $\nu$.
+\end{remark}
+\begin{theorem}(\underline{\textbf{Radon-Nikodym}})
+    Assume $\mu$ and $\nu$ are $\sigma$-finite measures on a measurable space $(X,\B)$, $\nu<<\mu$. Then there is a measurable function $f:X\rightarrow[0,+\infty)$ s.t. $d\nu = fd\mu$.
+    If $\tilde f$ is another function with the same properties, then $f=\tilde f$  $\mu$-a.e.
+
+    The function $f$ is called the \underline{Radon-Nikodym derivative} of $\nu$ with regard to $\mu$ and is denoted by $\frac{d\nu}{d\mu}$.
+
+    \[\nu(A)=\int_A \frac{d\nu}{d\mu}d\mu\]
+
+\end{theorem}
+
+\begin{example}
+    Consider a real-valued function $f\in C^1[a,b]$ s.t. $f'(t)>0$ $\forall t\in [a,b]$, let $c=f(a)$ and $d=f(b)$. We know that for any Riemann
+    integralbe function $g$ on $[c,d]$ we have 
+    $$\int_c^d g(t)dt = \int_a^b g(f(t))f'(t)dt.$$
+    Equivalently, for any Riemann integrable function $g$ on $[a,b]$, we have $$\int_c^d g\circ f^{-1} dt = \int_a^b g f'dt.$$
+    Denote by $\lambda_{[a,b]}$, $\lambda_{[c,d]}$ the Lebesgue measure restricted to the Borel subsets of $[a,b]$ and $[c,d]$ respectivly. Then the integral
+    above implies that $$d((f^{-1})_* \lambda_{[c,d]}) = f'd\lambda_{[a,b]},$$
+    since the integration of $\one_{[\alpha,\beta]}$ gives the same result for any interval $[\alpha,\beta]\subset [a,b]$ and since a finite Borel measure on $[a,b]$
+    is determined by its value on such intervals. Thus $(f^{-1})_* \lambda_{[c,d]}<<\lambda_{[a,b]}$ and $$\frac{d((f^{-1})_* \lambda_{[c,d]})}{d\lambda_{[a,b]}} = f'.$$
+\end{example}
+
+
+
+
+\section*{Decomposition theorems}
+\begin{definition}
+    Two measures $\nu$ and $\mu$ on a measurable space $(X,\B)$ are called \underline{mutually singular}, or we say that 
+    $\nu$ is \underline{singular} with regard to $\mu$, if there is $N\in\B$ such that $\nu(N^c)=0$, $\mu(N)=0$. 
+    We then write $\nu\perp\mu$.
+\end{definition}
+
+\begin{theorem}(\underline{\textbf{Lebesgue decomposition theorem}})
+    Assume $\nu,\mu$ are $\sigma$-finit measures on $(X,\B)$. Then there exists unique measures 
+    $\nu_a$ and $\nu_s$ s.t. $$\nu = \nu_a +\nu_s,\hspace{4mm} \nu_a<<\mu,\hspace{4mm} \nu_s\perp\mu$$
+    
+\end{theorem}
+
+\begin{theorem}(\underline{\textbf{Polar decomposition of complex measures}})
+    Assume $\nu$ is a complex measure on $(X,\B)$. Then there exists a finite measure $\mu$ on $(X,\B)$ and a measurable function 
+    $f:X\rightarrow \Pi$ such that $d\nu = fd\mu$. If $(\tilde\mu,\tilde f)$ is another such pair, then $\tilde\mu=\mu$ and $\tilde f=f$ $\mu$-a.e.
+\end{theorem}
+For signed measures we have the following decomposition
+
+\begin{theorem}(\underline{\textbf{Hahn decomposition theorem}})
+    Assume $\nu$ is a finite signed measure on $(X,\B)$. Then there exists $P,N\in\B$ such that
+    $X=P\cup N$, $P\cap N=\emptyset$, $\nu(A\cap P)\geq 0$, $\nu(A\cap N)\leq 0$ $\forall A\in \B$.
+    Moreover, then $|\nu|(A) = \nu(A\cap P)-\nu(A\cap N)$, and if $X=\tilde P\cup \tilde N$ is another such decomposition, then 
+    $$|\nu|(P\Delta \tilde P)=|\nu|(N\Delta \tilde N)=0.$$
+\end{theorem}
+
+\begin{corollary}(\underline{\textbf{Jordan's decomposition theorem}})
+    Assume $\nu$ is a finite signed measure on $(X,\B)$. Then there exists unique finite measures $\nu_+,\nu_-$ on $(X,\B)$ such that 
+    $$\nu = \nu_+ -\nu_-\hspace{4mm} \text{and}\hspace{4mm} \nu_+\perp\nu_-.$$
+    Moreover, then $|\nu| = \nu_+ +\nu_-$, hence $$\nu_+ = \frac{|\nu|+\nu}{2},\hspace{4mm} \nu_-=\frac{|\nu|-\nu}{2}.$$
+    
+\end{corollary}

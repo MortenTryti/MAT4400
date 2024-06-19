@@ -1,0 +1,189 @@
+\documentclass{article}
+
+
+% allows special characters (including æøå)
+\usepackage[utf8]{inputenc}
+%\usepackage[english]{babel}
+\usepackage{dsfont}
+\usepackage{subfiles}
+\usepackage{physics,amssymb}  % mathematical symbols (physics imports amsmath)
+\include{amsmath}
+\usepackage{graphicx}         % include graphics such as plots
+\usepackage{xcolor}           % set colors
+\usepackage{hyperref}         % automagic cross-referencing (this is GODLIKE)
+\usepackage{listings}         % display code
+\usepackage{subfigure}        % imports a lot of cool and useful figure commands
+\usepackage{float}
+%\usepackage[section]{placeins}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usepackage{cleveref} % for \cref
+\usepackage{enumitem} % to enumerate with a), b), ... : [label=(\alph*)] 
+\usepackage{cancel}
+\usepackage{slashed}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{comment}
+\usepackage{bbm} % Allows for the characteristic function of a set
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{properties}[theorem]{Properties}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{remark}{Remark}
+\newcommand{\eqdef}{\mathrel{\mathop:}=}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\usepackage{stmaryrd}
+
+
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+\usetikzlibrary{quantikz}
+
+% defines the color of hyperref objects
+% Blending two colors:  blue!80!black  =  80% blue and 20% black
+
+
+\newcommand{\A}{\mathscr{A}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\omm}{\hspace{1mm}}
+\newcommand{\tmm}{\hspace{2mm}}
+\newcommand{\one}{\mathds{1}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\Borel}[1]{\mathscr B(\mathbb R^{#1})}
+\newcommand{\map}[3]{#1:#2\rightarrow #3}
+\newcommand{\highlight}[2][yellow]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}
+\newcommand*{\itemtag}[1]{\hfill (\emph{#1})}
+
+\lstset{frame=tb,
+  language=c++,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{orange},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4
+}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}}
+%% USEFUL LINKS:
+%%
+%%   UiO LaTeX guides:        https://www.mn.uio.no/ifi/tjenester/it/hjelp/latex/
+%%   mathematics:             https://en.wikibooks.org/wiki/LaTeX/Mathematics
+
+%%   PHYSICS !                https://mirror.hmc.edu/ctan/macros/latex/contrib/physics/physics.pdf
+
+%%   the basics of Tikz:       https://en.wikibooks.org/wiki/LaTeX/PGF/Tikz
+%%   all the colors!:          https://en.wikibooks.org/wiki/LaTeX/Colors
+%%   how to draw tables:       https://en.wikibooks.org/wiki/LaTeX/Tables
+%%   code listing styles:      https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
+%%   \includegraphics          https://en.wikibooks.org/wiki/LaTeX/Importing_Graphics
+%%   learn more about figures  https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
+%%   automagic bibliography:   https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management  (this one is kinda difficult the first time)
+%%   REVTeX Guide:             http://www.physics.csbsju.edu/370/papers/Journal_Style_Manuals/auguide4-1.pdf
+%%
+%%   (this document is of class "revtex4-1", the REVTeX Guide explains how the class works)
+
+
+%%%%%%%%%%%%% CREATING THE pdf FILE USING LINUX IN THE TERMINAL %%%%%%%%%%%%%
+%% pdflatex filename.tex && filename.tex && open filename.pdf
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% USING FOOTNOTE COMMAND: %%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% pdflatex filename.tex && bibtex filename.tex && pdflatex filename.tex && pdflatex filename.tex && open filename.pdf
+
+
+\newif\ifdetailed
+\detailedtrue % Detailed version
+% \detailedfalse % Only important stuff version
+%%%% Usage %%%%:
+% \ifdetailed
+% Detailed thing, for example:
+% \begin{align}
+%   U(t) = \int u(x,t)d\mu
+% \end{align}
+% \fi 
+
+
+\setcounter{section}{17}
+\setcounter{theorem}{17}
+
+\begin{document}
+\section{Dense subspaces of $L^p$}
+\begin{theorem}
+    Assume $(X,d)$ is a metric space, $\mu$ is a Borel measure on $X$ s.t. $\mu(B_R(x))<\infty,\tmm \forall x\in X$ and 
+    $\forall R>0$, $1\leq p\leq \infty$. Then the bounded continuous functions on $X$ with bounded support form a dense subspace of $L^p(X,d\mu)$.
+    (Where by bounded support we mean that $f$ is zero outside $B_R(x)$ for some $x$ and $R>0$.)
+\end{theorem}
+
+If $X$ is locally compact, then by $C_c(X)$ we denote the space of continuous functions on $X$ with compact support.
+
+\begin{theorem}
+    Assume $(X,d)$ is a separable, so it has a dense subset, locally compact metric space, $\mu$ is a Borel measure on $X$ s.t. $\mu(K)<\infty$ for every compact $K\subset X$, $|\leq P<\infty$. Then $C_c(X)$ is dense in $L^p(X,d\mu)$.
+\end{theorem}
+
+\begin{remark}
+    Theorem 17.8 in the book is wrong.
+\end{remark}
+
+\begin{remark}
+    These results do not extent to $p=\infty$.
+\end{remark}
+For $X=\R^n$, either theorem implies that if $\mu$ is a Borel measure on $\R^n$, s.t. $\mu(B_R(x))<\infty$, $\forall x$, $\forall R>0$, then
+$C_c(\R^n)$ is dense in $L^p(\R^n,d\mu)$, $1\leq p<\infty$. Later we will prove that $C_c^\infty (\R^n)$ is still dense in $L^p(\R^n,d\mu)$.
+ For $\mu=\lambda_n$ we write $L^p(\R^n)$ instead of $L^p(\R^n,d\lambda_n)$.
+
+
+
+\section{Modes of convergence}
+\begin{theorem}(\underline{\textbf{Egorov}})
+
+    Assume $(X,\B,\mu)$ is a measure space, $\mu(X)<\infty$. Assume $f_n,f:X\rightarrow\C$ are measurable functions and 
+    $f_n\rightarrow f$ a.e. Then $\forall \epsilon>0$ there is $X_\epsilon \in\B$ s.t. $\mu(X_\epsilon)<\epsilon$ and $f_n\rightarrow f$ uniformly on $X\backslash X_\epsilon$. 
+\end{theorem}
+
+\begin{enumerate}
+    \item For measurable functions $f_n,f$, we write $f_n\rightarrow f$ in the $p-th$ mean, excluding $p=\infty$, if $\lim_{n\rightarrow\infty}||f_n-f||_p=0$.
+    \item For $p=1$ we sat that $f_n\rightarrow f$ in \underline{mean} and for $p=2$ we say that $f_n\rightarrow f$ in \underline{quadratic mean}.
+    \item We say that $f_n\rightarrow f$ in \underline{measure} if $\lim_{n\rightarrow\infty}\mu(\left\{x:|f_n(x)-f(x)|\geq \epsilon\right\})=0$, $\forall \epsilon>0$.
+\end{enumerate}
+
+\begin{theorem}
+    Assume $(X,\B,\mu)$ is a measure space, $1\leq p<\infty$, $f_n,f\rightarrow \C$ are measurable functions. Then
+    \begin{enumerate}
+        \item if $f_n\rightarrow f$ in the $p$-th mean, then $f_n\rightarrow f$ in measure 
+        \item if $f_n\rightarrow f$ in measure, then there is a subsequence $(f_n)_{n=1}^\infty$ s.t. $f_{n_k}\rightarrow f$ a.e.
+        \item if $f_n\rightarrow f$ a.e. and $\mu(X)<\infty$, then $f_n\rightarrow f$ in measure.
+    \end{enumerate}
+    In particular, if $f_n\rightarrow f$ in the $p$-th mean, then $f_{n_k}\rightarrow f$ a.e. for a subsequence $(f_{n_k})_k$.
+\end{theorem}
+
+\end{document}

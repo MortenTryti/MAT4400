@@ -1,0 +1,210 @@
+\documentclass{article}
+
+
+% allows special characters (including æøå)
+\usepackage[utf8]{inputenc}
+%\usepackage[english]{babel}
+\usepackage{dsfont}
+\usepackage{subfiles}
+\usepackage{physics,amssymb}  % mathematical symbols (physics imports amsmath)
+\include{amsmath}
+\usepackage{graphicx}         % include graphics such as plots
+\usepackage{xcolor}           % set colors
+\usepackage{hyperref}         % automagic cross-referencing (this is GODLIKE)
+\usepackage{listings}         % display code
+\usepackage{subfigure}        % imports a lot of cool and useful figure commands
+\usepackage{float}
+%\usepackage[section]{placeins}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usepackage{cleveref} % for \cref
+\usepackage{enumitem} % to enumerate with a), b), ... : [label=(\alph*)] 
+\usepackage{cancel}
+\usepackage{slashed}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{comment}
+\usepackage{bbm} % Allows for the characteristic function of a set
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{properties}[theorem]{Properties}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{remark}{Remark}
+\newcommand{\eqdef}{\mathrel{\mathop:}=}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\usepackage{stmaryrd}
+
+
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+\usetikzlibrary{quantikz}
+
+% defines the color of hyperref objects
+% Blending two colors:  blue!80!black  =  80% blue and 20% black
+
+
+\newcommand{\A}{\mathscr{A}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\omm}{\hspace{1mm}}
+\newcommand{\tmm}{\hspace{2mm}}
+\newcommand{\one}{\mathds{1}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\Borel}[1]{\mathscr B(\mathbb R^{#1})}
+\newcommand{\map}[3]{#1:#2\rightarrow #3}
+\newcommand{\highlight}[2][yellow]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}
+\newcommand*{\itemtag}[1]{\hfill (\emph{#1})}
+
+\lstset{frame=tb,
+  language=c++,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{orange},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4
+}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}}
+%% USEFUL LINKS:
+%%
+%%   UiO LaTeX guides:        https://www.mn.uio.no/ifi/tjenester/it/hjelp/latex/
+%%   mathematics:             https://en.wikibooks.org/wiki/LaTeX/Mathematics
+
+%%   PHYSICS !                https://mirror.hmc.edu/ctan/macros/latex/contrib/physics/physics.pdf
+
+%%   the basics of Tikz:       https://en.wikibooks.org/wiki/LaTeX/PGF/Tikz
+%%   all the colors!:          https://en.wikibooks.org/wiki/LaTeX/Colors
+%%   how to draw tables:       https://en.wikibooks.org/wiki/LaTeX/Tables
+%%   code listing styles:      https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
+%%   \includegraphics          https://en.wikibooks.org/wiki/LaTeX/Importing_Graphics
+%%   learn more about figures  https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
+%%   automagic bibliography:   https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management  (this one is kinda difficult the first time)
+%%   REVTeX Guide:             http://www.physics.csbsju.edu/370/papers/Journal_Style_Manuals/auguide4-1.pdf
+%%
+%%   (this document is of class "revtex4-1", the REVTeX Guide explains how the class works)
+
+
+%%%%%%%%%%%%% CREATING THE pdf FILE USING LINUX IN THE TERMINAL %%%%%%%%%%%%%
+%% pdflatex filename.tex && filename.tex && open filename.pdf
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% USING FOOTNOTE COMMAND: %%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% pdflatex filename.tex && bibtex filename.tex && pdflatex filename.tex && pdflatex filename.tex && open filename.pdf
+
+
+\newif\ifdetailed
+\detailedtrue % Detailed version
+% \detailedfalse % Only important stuff version
+%%%% Usage %%%%:
+% \ifdetailed
+% Detailed thing, for example:
+% \begin{align}
+%   U(t) = \int u(x,t)d\mu
+% \end{align}
+% \fi 
+
+
+\setcounter{section}{19}
+\setcounter{theorem}{19}
+
+\begin{document}
+\section{Decomposition theorems}
+\begin{definition}
+    Two measures $\nu$ and $\mu$ on a measurable space $(X,\B)$ are called \underline{mutually singular}, or we say that 
+    $\nu$ is \underline{singular} with regard to $\mu$, if there is $N\in\B$ such that $\nu(N^c)=0$, $\mu(N)=0$. 
+    We then write $\nu\perp\mu$.
+\end{definition}
+
+\begin{theorem}(\underline{\textbf{Lebesgue decomposition theorem}})
+    Assume $\nu,\mu$ are $\sigma$-finit measures on $(X,\B)$. Then there exists unique measures 
+    $\nu_a$ and $\nu_s$ s.t. $$\nu = \nu_a +\nu_s,\hspace{4mm} \nu_a<<\mu,\hspace{4mm} \nu_s\perp\mu$$
+    
+\end{theorem}
+
+\begin{theorem}(\underline{\textbf{Polar decomposition of complex measures}})
+    Assume $\nu$ is a complex measure on $(X,\B)$. Then there exists a finite measure $\mu$ on $(X,\B)$ and a measurable function 
+    $f:X\rightarrow \Pi$ such that $d\nu = fd\mu$. If $(\tilde\mu,\tilde f)$ is another such pair, then $\tilde\mu=\mu$ and $\tilde f=f$ $\mu$-a.e.
+\end{theorem}
+For signed measures we have the following decomposition
+
+\begin{theorem}(\underline{\textbf{Hahn decomposition theorem}})
+    Assume $\nu$ is a finite signed measure on $(X,\B)$. Then there exists $P,N\in\B$ such that
+    $X=P\cup N$, $P\cap N=\emptyset$, $\nu(A\cap P)\geq 0$, $\nu(A\cap N)\leq 0$ $\forall A\in \B$.
+    Moreover, then $|\nu|(A) = \nu(A\cap P)-\nu(A\cap N)$, and if $X=\tilde P\cup \tilde N$ is another such decomposition, then 
+    $$|\nu|(P\Delta \tilde P)=|\nu|(N\Delta \tilde N)=0.$$
+\end{theorem}
+
+\begin{corollary}(\underline{\textbf{Jordan's decomposition theorem}})
+    Assume $\nu$ is a finite signed measure on $(X,\B)$. Then there exists unique finite measures $\nu_+,\nu_-$ on $(X,\B)$ such that 
+    $$\nu = \nu_+ -\nu_-\hspace{4mm} \text{and}\hspace{4mm} \nu_+\perp\nu_-.$$
+    Moreover, then $|\nu| = \nu_+ +\nu_-$, hence $$\nu_+ = \frac{|\nu|+\nu}{2},\hspace{4mm} \nu_-=\frac{|\nu|-\nu}{2}.$$
+    
+\end{corollary}
+
+\section{Duals of $\mathbf{L^p}$-spaces}
+Assume $(X,\B,\mu)$ is a measure space, $1\leq p<\infty$. What is the dual of 
+$L^p(X,d\mu)$? When does a measurable function $g:X\rightarrow \C$ define a bounded linear functional on $L^p(X,d\mu)$ by 
+$$\phi(f)=\int_X fgd\mu?$$
+
+\begin{theorem}(\underline{\textbf{Young's inequality}})
+    Assume $f:[0,a]\rightarrow [0,b]$ is a strictly increasing continuous functions, $f(0)=0$, $f(a)=b$. Then for all $s\in[0,a]$ and $t\in[0,b]$
+    we have $$st\leq \int_0^s f(x)dx + \int_0^t f^{-1}dy dy$$
+    and the equality holds if and only if $t=f(s)$.
+    
+\end{theorem}
+If we apply this to $f(s)=s^{p-1}$. Then $f^{-1}(t)=t^{q-1}$, where $q$ is the \underline{Hölder conjugate} of $p$. $(p-1)(q-1)=1$, that is $$\frac{1}{p}+\frac{1}{q}=1.$$
+We get $$st \leq \int_0^s x^{p-1}dx + \int_0^t y^{q-1}dy = \frac{s^p}{p}+\frac{t^q}{q}.$$
+\begin{theorem}(\underline{\textbf{Hölder's inequality}})
+    If $f\in L^p(X,d\mu)$, $g\in L^q(X,d\mu)$, $1<p<\infty$ and $1/p + 1/q = 1$. Then 
+    $$fg \in L^1(X,d\mu)\hspace{4mm}\text{and}\hspace{4mm} ||fg||_1 \leq ||f||_p||g||_q.$$
+\end{theorem}
+It follows that every $g\in L^q(X,d\mu)$ defines a bounded linear functional 
+$$l_g:L^p(X,d\mu)\rightarrow \C,\hspace{4mm} l_g(f) = \int_X fg d\mu,\hspace*{3mm}\text{and}\hspace{3mm} ||l_g||\leq ||g||_q.$$
+The same makes sense for $p=1$, $q=\infty$ and $p=\infty$, $q=1$, when $\mu$ is $\sigma$-finite as 
+$$\int_X|fg|d\mu\leq \int_X|f|d\mu ||g||_\infty = ||f||_1||g||_\infty.$$
+
+\begin{lemma}
+    Assume $1\leq p\leq\infty$, $1/p + 1/q = 1$ and $\mu$ is $\sigma$-finite if $p=1$ or $p=\infty$. For $g\in L^q(X,d\mu)$ consider $l_g\in L^p(X,d\mu)^*$. Then 
+    $$||l_g|| = ||g||_q.$$
+\end{lemma}
+Therefore we can view $L^q(X,d\mu)$ as a subspace of $L^p(X,d\mu)^*$ using the isometric embedding
+$$L^q(X,d\mu)\hookrightarrow L^p(X,d\mu),\hspace{2mm}g\mapsto l_g.$$ 
+\begin{theorem}
+    Assume $(X,\B,\mu)$ is a $\sigma$-finit measure space, $1\leq p<\infty$, $1/p+1/q=1$. Then 
+    $$L^Pp(X,d\mu)^* = L^q(X,d\mu).$$
+\end{theorem}
+\begin{remark}
+    This is usually not true for $p=\infty$.
+\end{remark}
+
+\end{document}

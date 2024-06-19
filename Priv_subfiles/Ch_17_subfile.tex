@@ -1,0 +1,49 @@
+\section{Dense subspaces of $L^p$}
+\begin{theorem}
+    Assume $(X,d)$ is a metric space, $\mu$ is a Borel measure on $X$ s.t. $\mu(B_R(x))<\infty,\tmm \forall x\in X$ and 
+    $\forall R>0$, $1\leq p\leq \infty$. Then the bounded continuous functions on $X$ with bounded support form a dense subspace of $L^p(X,d\mu)$.
+    (Where by bounded support we mean that $f$ is zero outside $B_R(x)$ for some $x$ and $R>0$.)
+\end{theorem}
+
+If $X$ is locally compact, then by $C_c(X)$ we denote the space of continuous functions on $X$ with compact support.
+
+\begin{theorem}
+    Assume $(X,d)$ is a separable, so it has a dense subset, locally compact metric space,
+     $\mu$ is a Borel measure on $X$ s.t. $\mu(K)<\infty$ for every compact $K\subset X$, $1\leq p<\infty$. Then $C_c(X)$ is dense in $L^p(X,d\mu)$.
+\end{theorem}
+
+\begin{remark}
+    Theorem 17.8 in the book is wrong.
+\end{remark}
+
+\begin{remark}
+    These results do not extent to $p=\infty$.
+\end{remark}
+For $X=\R^n$, either theorem implies that if $\mu$ is a Borel measure on $\R^n$, s.t. $\mu(B_R(x))<\infty$, $\forall x$, $\forall R>0$, then
+$C_c(\R^n)$ is dense in $L^p(\R^n,d\mu)$, $1\leq p<\infty$. Later we will prove that $C_c^\infty (\R^n)$ is still dense in $L^p(\R^n,d\mu)$.
+ For $\mu=\lambda_n$ we write $L^p(\R^n)$ instead of $L^p(\R^n,d\lambda_n)$.
+
+
+
+\section*{Modes of convergence}
+\begin{theorem}(\underline{\textbf{Egorov}})
+
+    Assume $(X,\B,\mu)$ is a measure space, $\mu(X)<\infty$. Assume $f_n,f:X\rightarrow\C$ are measurable functions and 
+    $f_n\rightarrow f$ a.e. Then $\forall \epsilon>0$ there is $X_\epsilon \in\B$ s.t. $\mu(X_\epsilon)<\epsilon$ and $f_n\rightarrow f$ uniformly on $X\backslash X_\epsilon$. 
+\end{theorem}
+
+\begin{enumerate}
+    \item For measurable functions $f_n,f$, we write $f_n\rightarrow f$ in the $p-th$ mean, excluding $p=\infty$, if $\lim_{n\rightarrow\infty}||f_n-f||_p=0$.
+    \item For $p=1$ we sat that $f_n\rightarrow f$ in \underline{mean} and for $p=2$ we say that $f_n\rightarrow f$ in \underline{quadratic mean}.
+    \item We say that $f_n\rightarrow f$ in \underline{measure} if $\lim_{n\rightarrow\infty}\mu(\left\{x:|f_n(x)-f(x)|\geq \epsilon\right\})=0$, $\forall \epsilon>0$.
+\end{enumerate}
+
+\begin{theorem}
+    Assume $(X,\B,\mu)$ is a measure space, $1\leq p<\infty$, $f_n,f\rightarrow \C$ are measurable functions. Then
+    \begin{enumerate}
+        \item if $f_n\rightarrow f$ in the $p$-th mean, then $f_n\rightarrow f$ in measure 
+        \item if $f_n\rightarrow f$ in measure, then there is a subsequence $(f_n)_{n=1}^\infty$ s.t. $f_{n_k}\rightarrow f$ a.e.
+        \item if $f_n\rightarrow f$ a.e. and $\mu(X)<\infty$, then $f_n\rightarrow f$ in measure.
+    \end{enumerate}
+    In particular, if $f_n\rightarrow f$ in the $p$-th mean, then $f_{n_k}\rightarrow f$ a.e. for a subsequence $(f_{n_k})_k$.
+\end{theorem}

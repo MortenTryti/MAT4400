@@ -1,0 +1,37 @@
+\section{Measures}
+
+\begin{definition}
+    A (positive) measure $\mu$ on $X$ is a map $\mu:\A\rightarrow [0,\infty]$ satisfying
+    \begin{enumerate}
+        \item $\A$ is a $\sigma$-algebra in $X$,
+        \item $\mu(\emptyset)=0$,
+        \item $(A_n)_{n\in\N}\subset \A$ pairwise disjoint $\Rightarrow \mu\left(\bigcup_{n\in\N} A_n\right) = \sum_{n\in\N}\mu(A_n)$.
+    \end{enumerate}
+    If $\mu$ satisfies point 2. and 3., but $\A$ is not a $\sigma$-algebra, then $\mu$ is called a pre-measure. 
+\end{definition}
+
+\begin{definition}
+    Let $X$ be a set and $\A$ a $\sigma$-algebra on $X$. The pair $(X,\A)$ is called a measurable space. If $\mu$ is a measure on $X$, then $(X,\A,\mu)$ is called a measure space.
+    A finite measure is a measure with $\mu(X)<\infty$, and a probability measure is a measure with $\mu(X)=1$. The corresponding measure spaces are called finite measure spaces and probability spaces respectively.
+
+\end{definition}
+
+\begin{proposition}
+    Let $(X,\A,\mu)$ be a measure space and $A,B,A_n,B_n\in\A$, $n\in\N$. Then 
+    \begin{enumerate}
+        \item $A\cap B=\emptyset \rightarrow \mu(A\cup B)=\mu(A)+\mu(B)$,
+        \item $A\subset B \rightarrow \mu(A)\leq\mu(B)$,
+        \item $A\subset B,\omm \mu(A)<\infty \Rightarrow \mu(B\backslash A)=\mu(B)-\mu(A)$,
+        \item  $\mu(A\cup B) + \mu(A\cap B)=\mu(A)+\mu(B)$,
+        \item $\mu(A\cup B)\leq \mu(A)+\mu(B)$,
+        \item $A_n\uparrow A\Rightarrow \mu(A)=\sup_{n\in\N}\mu(A_n)=\lim_{n\rightarrow\infty}\mu(A_n)$,
+        \item $B_n\downarrow B,\mu(B_1)<\infty\Rightarrow \mu(B)=\inf_{n\in\N}\mu(B_n)=\lim_{n\rightarrow\infty}\mu(B_n)$,
+        \item $\mu\left(\bigcup_{n\in\N}A_n\right)\leq \sum_{n\in\N}\mu(A_n)$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{definition}
+    The set function $\lambda^n$ on $(\R^n,\B(\R^n))$ that assigns every half-open rectangle $[a,b)=[a_1,b_1)\cross\ldots\cross[a_n,b_b)$ the value
+    $$\lambda^n([a,b)) = \prod_{i=1}^{n}(b_i-a_i)$$
+    is called the $n$-dimensional Lebesgue measure. 
+\end{definition}

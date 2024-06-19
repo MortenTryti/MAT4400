@@ -1,0 +1,30 @@
+\section{Existence of Measures}
+
+Assume $X$ is a set, $S\subset \mathcal P(X),\omm \emptyset\in S$, and $\mu:S\rightarrow [0,+\infty]$ is a map s.t. $\mu(\emptyset)=0$. Can we extend $\mu$ to a measure on
+$(X,\sigma(S))$?
+
+We define $\mu^*:\mathcal P(X)\rightarrow [0,+\infty]$ by 
+
+\[\mu^*=\inf\left\{\sum_{n=1}^\infty \mu(A_n): A_n\in S,\omm A\in \bigcup_{n=1}^\infty A_n\right\}\]
+In general $\mu^*$ is neither a measure nor it extends $\mu$. But we have, 
+\begin{lemma}
+    
+    The map $\mu^*$ has the following properties: 
+    \begin{enumerate}
+        \item \(\mu^{*}(\emptyset) = 0\),
+        \item \(A\subset B \omm\text{ then }\omm u^{*}(A) \leq \mu^{*}(B)\),
+        \item \(\mu^{*}\left( \bigcup\limits_{n\in\mathbb{N}} A_n \right)\leq \sum\limits_{n\in\mathbb{N}} \mu^{*}(A_n)\),
+    \end{enumerate}
+\end{lemma}
+Any map $\mu^*:\mathcal P(X)\rightarrow [0,+\infty]$ with properties $(1.)-(3.)$ is called an \underline{outer measure} on $X$. It turns out, every 
+outer measure defines a measure on a certain $\sigma$-algebra.
+
+\begin{theorem}[Carathéodory's theorem]
+    Assume $X$ is a set and $\mu^*:\mathcal P(X)\rightarrow [0,+\infty]$ is an outer measure. Let $\B\subset\mathcal P(X)$ be the collection 
+    of sets $A$ s.t. \[\mu^*(B)=\mu^*(A\cap B)+\mu^*(A^c\cap B),\tmm \forall B\in X.\]
+    Such sets $A$ are called \underline{Carathéodory measurable} with respect to $\mu^*$. Then $\B$ is a $\sigma$-algebra and $\mu\defeq \left.\mu^*\right|_{\B}$ is a 
+    measure on $(X,\B)$.
+\end{theorem}
+
+
+    

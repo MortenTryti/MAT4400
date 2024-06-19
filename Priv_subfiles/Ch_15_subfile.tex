@@ -1,0 +1,86 @@
+\section{Integrals with respect to image measures}
+
+
+\begin{definition}
+    For functions $f,g:\R^n\rightarrow \C$, the \underline{convolution} is defined as \[(f*g)(x)= \int_{\R^n}f(y)g(x-y)dy = \int_{\R^n}f(x-y)g(y)dy.\]
+    A good question is when this is well-defined. 
+\end{definition}
+
+\begin{lemma}
+    If $f,g\in L^1(\R^n)$, then the function $y\mapsto f(y)g(x-y)$ is integrable for a.e. $x\in \R^n$, $f*g\in L^1(\R^n)$, and \[||f*g||_1\leq ||f||_1||g||_1.\]
+\end{lemma}
+
+
+
+\begin{lemma}
+    Assume $\phi:(a,b)\rightarrow [0,+\infty)$ is a convex function. Then $\phi$ is continuous and \[\phi(x)=\sup\{l(x):\phi\geq l,\hspace{2mm} l(t)=\alpha t+\beta\},\hspace{4mm}\forall x\in (a,b).\]
+\end{lemma}
+\begin{theorem}(\underline{\textbf{Jensen's inequality}})
+    Assume $(X,\B,\mu)$ is a probability space $(\mu(X)=1)$, $\phi:[0,+\infty)\rightarrow [0,+\infty)$ is convex. Then for every integrable $f:X\rightarrow [0,+\infty]$, we have \[\phi\left(\int_X fd\mu\right)\leq \int_X \phi\circ fd\mu.\]
+    If in addition $\lim_{x\rightarrow \infty }\phi(x)=+\infty$, then for every measurable function $f:X\rightarrow [0,+\infty]$ we have \[\phi\left(\int fd\mu\right)\leq \int_X \phi\circ fd\mu,\]
+    where we put $\phi(+\infty)=+\infty$.
+\end{theorem}
+
+
+
+\begin{lemma}
+    Assume $f\in L^1(\R^n)$, $g\in L^p(\R^n)$ $(1\leq p\leq \infty)$. Then the 
+    function $y\mapsto f(y)g(x-y)$ is integrable for a.e. x, $f*g\in L^p (\R^n)$ and 
+    
+    \[||f*g||_p\leq ||f||_1||g||_p.\]
+\end{lemma}
+Note that 
+\[\int _{\R^n} f(y)g(x-y)dy = \int_{\R^n}f(x-y)g(y)dy,\]
+so $f*g = g*f$.
+\begin{remark}
+    More generally, for $\mu\in M(\R^n)$ ($M(X)$ is the space of complex Borel measures on $X$) and $g\in L^p(\R^n)$, we can define $\mu *g=g*\mu\in L^p(\R^n)$ by 
+    
+    \[(\mu*g)(x) = \int_{\R^n}g(x-y)d\mu(y).\]
+    Then $||\mu*g||_p\leq |\mu|(\R^n)||g||_p.$
+\end{remark}
+
+One might ask what convolutions are good for? The following example sheds some light on it,
+\begin{example}
+    Consider \[f = \frac{1}{\lambda_n(B_r(0))}\mathds{1}_{B_r(0)}.\]
+    Then \[(f*g)(x) =  \frac{1}{\lambda_n(B_r(0))} \int_{B_r(0)} g(x-y)dy =  \frac{1}{\lambda_n(B_r(x))}\int_{B_r(x)}g(y)dy.\]
+    Where we note that $\lambda_n(B_r(0)) = \lambda_n(B_r(x))$.
+\end{example} 
+For a multi-index variable $\alpha = (\alpha_1,\ldots,\alpha_n)\in \mathbb{Z}_+^n$, write $\partial^\alpha$ for $\partial^{\alpha_1+\ldots \alpha^n}/\partial x_1^{\alpha_1}\ldots\partial x_n^{\alpha_n}$.
+Denote by $L^1_{loc}(\R^n)$ the space of Lebesgue measurable functions that are integrable on every ball. We identify functions that coincide a.e. (so, more pedantically,
+ $L^1_{loc}(\R^n)$ is a space of equivalence classes of functions). We have $L^p(\R^n)\subset L_{loc}^1(\R^n)$ for all $1\leq p\leq \infty$.
+
+ \begin{lemma}
+    If $\phi\in C_c^\infty(\R^n)$ and $f\in L_{loc}^1(\R^n)$, then $\phi*f\in C^\infty (\R^n)$ and \[\partial^\alpha (\phi*f)=(\partial^\alpha \phi)*f.\]
+ \end{lemma}
+
+ By choosing suitable $\phi$ we can make $(\phi*f)$ close to $f$, as we will see shortly.
+ \begin{definition}
+    A \underline{positive mollifier} is a function $\phi\in C_c(\R^n)$ s.t. $\phi\geq 0$ and \[\int_{\R^n}\phi(x)dx=1.\]
+
+ \end{definition}
+
+ For a function $\phi$ on $\R^n$ and $\epsilon>0$, define \[\phi^\epsilon (x) = \epsilon ^{-n}\phi(\frac{x}{\epsilon}).\]
+ Also note that if $\phi\in L^1(\R^n)$, $\int_{R^n}\phi dx=1$, then $\int_{\R^n}\phi^\epsilon dx =1$.
+
+ \begin{example}
+    Consider the function $h$ on $\R$ defined by 
+
+    \[ h(t) = \begin{cases} 
+        e^{-\frac{1}{1-t^2}} &, |t|<1,  \\
+        0 & t\geq 1.  
+     \end{cases}
+  \]
+  Then $h\in C_c^\infty(R^n)$. Hence $\phi(x)=c_n h(|x|)$ is a mollifier, where $c_n = \left(\int_{\R^n}h(|x|)dx\right)^{-1}$.
+ \end{example}
+
+\begin{proposition}
+    Let $\phi\in L^1(\R^n)$ be s.t. $\phi\geq 0$ and $\int_{\R^n}\phi dx=1$. Then we have:
+    \begin{enumerate}
+        \item if $f\in C_0(\R^n)$, then $\phi^\epsilon *f\in C_0(\R^n)$ and \[\lim_{\epsilon\rightarrow 0^+}||\phi^\epsilon *f -f||=0 \hspace{3mm}\text{(uniform norm)}, \]
+        \item if $f\in L^p(\R^n)$, $1\leq p<\infty$, then \[\lim_{\epsilon\rightarrow 0^+}||\phi^\epsilon *f -f||_p=0. \]
+    \end{enumerate}
+
+\end{proposition}
+\begin{corollary}
+    For any Radon measure $\mu$ on $\R^n$, $C_c^\infty(\R^n)$ is dense in $L^p(\R^n,d\mu)$ for $1\leq p<\infty$.
+\end{corollary}

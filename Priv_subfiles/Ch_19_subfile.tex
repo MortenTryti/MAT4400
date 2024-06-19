@@ -1,0 +1,136 @@
+
+\section{Fourier transform}
+Write $L^1(\R^n)$ for $L^1(\R^n,d\lambda_n)$. We also write \[\int_{\R^n}f(x)dx\hspace{4mm}\text{ for }\hspace{4mm}\int_{\R^n}f(x)d\lambda_n(x).\]
+The \underline{Fourier transform} of $f\in L^1(\R^n)$ is the function $\hat f:\R^n\rightarrow \C$ defined by 
+
+\[\hat f(x) = \frac{1}{(2\pi)^n}\int_{\R^n} f(y)e^{-i\langle x,y\rangle}dy,\hspace{4mm}\text{where } \langle x,y\rangle = x_1y_1+\ldots + x_ny_n.\]
+More generally, if $\mu$ is a complex measure on $\R^n$, then its Fourier transform is the function $\hat\mu:\R^n\rightarrow\C$ defined by 
+
+\[\hat\mu(x)=\frac{1}{(2\pi)^n}\int_{\R^n}e^{-i\langle x,y\rangle}d\mu(y).\]
+If $f\in L^1(\R^n)$ and $\mu_f$ is defined by $d\mu_f = fd\lambda_n$ then $\hat{\mu}_f=\hat f$.
+
+\begin{remark}(\underline{\textbf{ and warning}})
+    
+    There are many conventions:
+    \begin{enumerate}
+        \item Instead of the normalisation $1/(2\pi)^n$, one has $1$, $1/(2\pi)^{n/2}$.
+        \item Instead of $e^{-i\langle x,y\rangle}$, one has $e^{i\langle x,y\rangle}$, $e^{\pm i2\pi\langle x,y\rangle}$.
+    \end{enumerate}
+\end{remark}
+
+\begin{lemma}
+    If $\mu$ is a complex Borel measure (and hence finite) on $\R^n$, then $\hat\mu$ is a continuous function on $\R^n$ and \[|\hat\mu(x)|\leq \frac{|\mu|(\R^n)}{(2\pi)^n}.\]
+    (In particular, if $f\in L^1(\R^n)$, then $\hat f$ is continuous and $|\hat f (x)|\leq ||f||_1/(2\pi)^n$)
+\end{lemma}
+
+\begin{lemma}
+    $\quad$
+    \begin{enumerate}
+        \item If $f_t(x) = f(x-t)$, then \[\hat f_t(x) = e^{-i\langle t,x\rangle}\hat f(x).\] 
+        \item Uf $l_t(x)=e^{i\langle t,x\rangle}$ ($x,t\in\R^n)$, then $\hat{l_t f}(x)=\hat f(x-t)$.
+        \item If $T\in GL_n(\R)$, then $\hat{f\circ T}=\frac{1}{|\det T|}\hat f\circ (T^T)^{-1}.$
+        \item $\hat{\bar{f}}(x)=\bar{\hat{f}}(-x).$
+    \end{enumerate}
+\end{lemma}
+
+\begin{example}(\textit{With omitted proof, good exercise tho}).
+    Let $f(x)=e^{-\frac{|x|^2}{2}}$, where $|x|=\langle x,x\rangle^{1/2}$. Then \[\hat f(x)=\frac{1}{(2\pi)^{n/2}}e^{-\frac{|x|^2}{2}}\].
+    More, generally, if $f(x) =e^{-\frac{C|x|^2}{2}} $ $(C>0)$, then \[\hat f(x)=\frac{1}{(2\pi C)^{n/2}}e^{-\frac{|x|^2}{2C}}.\]
+\end{example}
+
+
+
+\begin{proposition}
+    If $f,g\in L^1(\R^n)$, then $\widehat{f*g} = (2\pi)^n \hat f \hat g$.
+\end{proposition}
+
+\begin{lemma}(\textbf{\underline{Rieemann-Lebesgue lemma}})\\
+    
+If $f\in L^1(\R^n)$, then $\hat f\in C_0(\R^n)$.
+    
+\end{lemma}
+
+\begin{theorem}(\underline{\textbf{Fourier inversion theorem}})\\
+
+    Assume $f\in L^1(\R^n)$ is s.t. $\hat f\in L^1(\R^n)$. Then for a.e. $x\in \R^n$, we have \[f(x)=\int_{\R^n}\hat f(y)e^{i\langle x,y\rangle}dy.\]
+    Equivalently, \[\hat{\hat{f}}(x) = \frac{1}{(2\pi)^n}f(-x),\hspace{3mm} \text{ for a.e. } x.\]
+     
+\end{theorem}
+
+\begin{lemma}
+    For any $f,g\in L^1(\R^n)$, we have \[\int_{R^n}\hat f(x) g(x)dx =\int_{R^n} f(x)\hat g(x)dx \]
+\end{lemma}
+
+\begin{corollary}
+    If $f\in L^1(\R^n)$ is s.t. $\hat f=0$, then $f=0$ a.e.
+\end{corollary}
+
+A linear map $U:H\rightarrow K$ between Hilbert spaces is called an isometry if $||Ux||=||x||$ $\forall x\in H.$
+By the polarisation identity, this is equivalent to \[ \langle Ux,Uy\rangle = \langle x,y\rangle,\hspace{3mm}\forall x,y,\in H.\]
+If $U$ is in addition surjective, then $U$ is called a unitary operator. 
+
+\begin{theorem}(\underline{\textbf{Plancherel}})\\
+   
+    There is a unique unitary operation $U:L^2(\R^n)\rightarrow L^2(\R^n)$ s.t. \[ Uf = (2\pi)^{\frac{n}{2}}\hat f,\hspace{4mm}\text{for } f\in L^1(\R^n)\cap L^2(\R^n).\]  
+    
+\end{theorem}
+
+\begin{definition}
+    We \underline{define} the Fourier transform of $f\in L^2(\R^n)$ by \[\hat f = (2\pi)^{-\frac{n}{2}} Uf.\]
+If $f\in L^1(\R^n)\cap L^2(\R^n)$, then \[\hat f(X)=\frac{1}{(2\pi)^n}\int_{\R^n}f(y)e^{-i\langle x,y\rangle}dy.\]
+\end{definition}
+
+
+\section*{Schwartz space}
+\begin{proposition}
+    Assume $f\in L^1(\R^n)$ and $x_j f\in L^1(\R^n)$ for some $1\leq j\leq n$. Then \[\partial_j \hat f = -i\widehat{x_j f},\hspace{7mm}\left(\partial_j = \frac{\partial}{\partial x_j}\right). \]
+    (Here by $x_jf$ we mean the function $x_j\mapsto x_j f(x)$.)
+\end{proposition}
+
+\begin{proposition}
+    Assume $f\in C(\R^n)\cap L^1(\R^n)$ is such that $\partial_j f\in L^1(\R^n)$. Then \[\widehat{\partial_j f} = ix_j\hat f.\]
+\end{proposition}
+
+\begin{corollary}
+    If $f,\partial_j f\in L^1(\R^n)$, then \[\lim_{x\rightarrow \infty}x_j \hat f(x)=0.\]
+\end{corollary}
+
+\begin{corollary}
+    $$\quad$$
+    \begin{enumerate}
+        \item If $x^\alpha f \in L^1(\R^n)$ for all $|\alpha|\leq N$, then $\hat f \in C^N(\R^n)$ and $\partial^\alpha \hat f=(-i)^{|\alpha|}\widehat{x^\alpha f}$.
+        \item If $f\in C^N(\R^n)$ and $\partial^\alpha f\in L^1(\R^n)$ for all $|\alpha|\leq N$, then $\widehat{\partial^\alpha f} = i^{|\alpha|}x^\alpha \hat f$ and hence $(1+|x|)^N\hat f(x)\xrightarrow[x\rightarrow\infty]{}0.$ 
+    \end{enumerate}
+    (Here $\alpha = (\alpha_1,\ldots,\alpha_n)\in \R_+^n$, $|\alpha|=\alpha_1+\ldots+\alpha_n$, $x_1^\alpha = x^{\alpha_1}\ldots x_n^{\alpha_n}$.)
+\end{corollary}
+
+\begin{definition}
+    A function $f$ on $\R^n$ is called a \underline{Schwartz function} if $f\in C^\infty(\R^n)$ and $x^\alpha \partial^\beta f$ is bounded for all multi-indices $\alpha,\beta$. The space $S(\R^n)$ of 
+    Schwartz functions is called a \underline{Schwartz space}.
+
+    Note that for every $f\in C^\infty(\R^n)$ the following conditions are equivalent: 
+    \begin{enumerate}
+        \item $x^\alpha \partial^\beta f$ is bounded for all $\alpha,\beta$,
+        \item $x^\alpha (\partial^\beta f)(x)\xrightarrow[x\rightarrow \infty]{}0$ for all $\alpha,\beta$,
+        \item $(1+|x|)^N\partial^\beta f$ is bounded for all $N\geq 1$ and all $\beta$.
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    $C^\infty_c(\R^n)\subset S(\R^n)$, $e^{-a|x|^2}\in S(\R^n)$ for all $a>0$. If $f\in S(\R^n)$, then $x^\alpha\partial^\beta f\in S(\R^n)$. The product of two 
+    Schwartz functions is a Schwartz function.
+\end{example}
+Clearly, $S(\R^n)\subset L^p(\R^n)$ for all $1\leq p\leq \infty$. From the Corollary above we conclude that if $f\in S(\R^n)$, then $\hat f\in S(\R^n)$. By the Fourier inversion theorem we then get
+
+\begin{theorem}
+    The Fourier transform maps $S(\R^n)$ into $S(\R^n)$.
+\end{theorem}
+
+\begin{remark}
+    This gives another proof to the fact that the image of the Fourier transform $ L^1(\R^n)\cap L^2(\R^n)\rightarrow L^2(\R^n)$ is dense, which is needed to prove Plancherel's theorem
+\end{remark}
+
+\begin{remark}
+    If $f\in\C_c^\infty(\R^n)$, $f\neq 0$, then $\hat f\in S(\R^n)$, but $\hat f$ is \underline{never} compactly supported, since it extends to an analytic function on $\C^n$
+    \[\hat f(z)=\frac{1}{(2\pi)^n}\int_{\R^n} f(y)e^{-i\langle x,y\rangle}dy.\]
+\end{remark}

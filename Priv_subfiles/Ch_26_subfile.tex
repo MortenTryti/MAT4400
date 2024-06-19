@@ -1,0 +1,150 @@
+
+
+\section{Hilbert spaces}
+Assume $H$ is a vector space over $\C$.
+\begin{definition}
+    A \underline{pre-inner product} on $H$ is a map $(\cdot,\cdot):H\times H\rightarrow\C$ which is 
+    \begin{enumerate}
+        \item \underline{sesquilinear}: that is, linear in the first variable, and antilinear in the second, for $u,v,w,\in H,\tmm \alpha,\beta\in\C$
+        $$(\alpha u+\beta v,w) = \alpha (u,w)+\beta (v,w)$$
+        $$(w,\alpha u+\beta v) = \bar\alpha (w,u) + \bar\beta (w,v)$$
+        
+        \item \underline{Hermitian}: $(u,v)=\overline{(v,u)}$
+        \item \underline{Positive semidefinite}: $(u,u)\geq 0$ for $u\in H$.
+    \end{enumerate}
+    It is called an \underline{inner product} or a \underline{scalar product}, if instead of $(3)$ the map is
+    \begin{enumerate}
+        \item[3.]  \underline{positive definite}: $(u,u)>0$ for $u\in H$, $u\neq 0$.
+    \end{enumerate}
+   A similar definition makes sense for real vector spaces, but then $(\cdot,\cdot):H\times H\rightarrow\R$ is 
+   \begin{enumerate}
+    \item bilinear
+    \item \underline{Symmetric}: $(u,v)=(v,u)$.
+    \item Positive semidefinite (for pre-inner products) or 
+    \item[3'.] positive definite (for inner products) 
+   \end{enumerate}
+   We only consider complex vector spaces, but all the results will have analogues for real ones as well.
+\end{definition}
+
+\begin{theorem}(\underline{\textbf{Cauchy-Schwarz inequality}})
+    If $(\cdot,\cdot)$ is a pre-inner product, then $$|(u,v)|\leq (u,u)^{1/2}(v,v)^{1/2}$$
+    
+\end{theorem}
+\begin{corollary}
+    We have a seminorm $||u||\equiv (u,u)^{1/2}$. It is a norm if and only if $(\cdot,\cdot)$ is an inner product. 
+\end{corollary}
+
+\begin{definition}
+    A \underline{Hilbert space} is a complex vector space $H$ with an inner product $(\cdot,\cdot)$ s.t. $H$ is complete with respect to the norm $||u||=(u,u)^{1/2}$.
+    The norm of the Hilbert space is determined by the inner product, but the inner product can also be recovered from the norm by the \underline{polarisations identity}
+    $$(u,v) = \frac{||u+v||^2-||u-v||^2}{4}+i\frac{||u+iv||^2-||u-iv||^2}{4},$$
+    which is proven by direct computation. A similar computation also proves the \underline{parallelogram law}:
+    $$||u+v||^2 +||u-v||^2 = 2||u||^2 + 2||v||^2.$$
+
+\end{definition}
+
+\begin{remark}
+    A norm in a vector space is given by an inner product if and only if it satisfies the parallelogram law, and then the scalar product is uniquely determined by the polarisation identity.
+\end{remark}
+\begin{remark}
+    Assume $(X,\B,\mu)$ is a measure space. Then $L^2(X,d\mu)$ is a Hilbert space with inner product $$(f,g)=\int_X f\bar g d\mu.$$
+    If $\B=\mathcal P(X)$ and $\mu$ is the counting measure, then we denote $L^2(X,d\mu)$ by $ l^2(X)$. If $X=\N$ then we simply write $l^2$, this is called sequence space. 
+    A more formal definition is 
+    $$l^2(X) = \left\{ f:X\rightarrow\C \omm :\omm \sum_{x}|f(x)|^2<\infty \right\}$$
+    which is a Hilbert space with inner product $(f,g) = \sum_{x\in X}f(x)\bar g(x)$.
+\end{remark}
+
+We recall that a subspace $C$ of a vector space is called \underline{convex} if $\forall u,v\in C$, $\forall t\in[0,1]$ we have $tu+(1-t)v\in C$. 
+The following is one of the key properties of Hilbert spaces. 
+\begin{theorem}
+    Assume $H$ is a Hilbert space, $C\subset H$ is a closed convex subset, $u\in H$. Then there is a unique $u_0\in C$ s.t. 
+    $$||u-u_0|| = d(u,C) = \inf_{v\in C}||u-v||.$$ 
+\end{theorem}
+
+\section*{Orthogonal projections}
+For a Hilbert space $H$ and a subset $A\subset H$, let $$A^\perp = \left\{ x\in H\omm :\omm x\perp y\omm\forall y\in A\right\},$$
+where $x\perp y$ means that $(x,y)=0$. $A^\perp$ is a closed subset of $H$.
+
+\begin{proposition}
+    Assume $H_0$ is a closed subspace of a Hilbert space $H$. Then every $u\in H$ uniquely decomposes as $u = u_0+u_1$ with $u_0\in H_0$ and $u_1\in H_0^\perp$.
+\end{proposition}
+For a closed subspace $H_0\subset H$, consider the map $P:H\rightarrow H_0$ s.t. $Pu\in H_0$ is a unique element satisfying $u-Pu\in H_0^\perp$.
+The operator $P:H\rightarrow H_0$ is linear. It is also \underline{contractive}, meaning that $||Pu||\leq ||u||$. It is called the \underline{orthogonal projection} onto $H_0$.
+If $H_0$ is finite dimensional with an orthonormal basis $u_1,\ldots,u_n$, then 
+$$Pu = \sum_{k=1}^{n}(u,u_k)u_k.$$
+Orthogonal basis can be defined for arbitrary Hilbert spaces. 
+\begin{definition}(\underline{\textbf{Projection operators}})
+    A projection on a vector space $V$ is a linear operator $$P:V\rightarrow V \text{ such that } P^2 = P.$$ If $V=H$ is a Hilbert space, then we can use the notion of orthogonality,
+     then a projection $P$ on $H$ is called orthogonal if it satisfies $$(Px,y)=(x,Py) \text{ for all } x,y\in H$$.   
+\end{definition}
+
+\begin{definition}
+    An \underline{orthogonal system} in $H$ is a collection of vectors $u_i\in H$ $(i\in I)$ s.t. 
+    $$(u_i,u_j)=\delta_{ij}\tmm \forall i,j\in I.$$
+    It is called an orthogonal basis if $span\{u_i\}_{i\in I}$ is dense in $H$.
+
+    Here $span\{u_i\}_{i\in I}$ denotes the linear span of $\{u_i\}_{i\in I}$, the space of finite linear combinations of the vectors $u_i$. 
+\end{definition}
+
+\begin{theorem}
+    Every Hilbert space $H$ has an orthonormal basis. If $H$ is separable, then there is a countable orthonormal basis. 
+\end{theorem}
+
+\begin{proposition}
+    Assume $\{u_i \}_{i\in I}$ is an orthogonal system in the Hilbert space $H$. Take $u\in H$. Then 
+    \begin{enumerate}
+        \item ( \underline{Bessel's inequality}) $\sum_{i\in I}|(u,u_i)|^2\leq ||u||^2$ 
+        \item ( \underline{Parseval's identity}) if $\{u_i\}_{i\in I}$ is an orthogonal basis then $\sum_{i\in I}|(u,u_i)|^2 = ||u||^2$.
+    \end{enumerate}
+\end{proposition}
+
+If $(u_i)_{i\in I}$ is an orthogonal basis, then the numbers $(u,u_i)$ $(i\in I)$ are called the \underline{Fourier coefficients} of $u$
+with respect to $(u_i)_{i\in I}$. The Parseval identity suggests that $u$ is determined by its Fourier coefficients. This is true, and even more we have
+\begin{proposition}
+    Assume $(u_i)_{i\in I}$ is an orthogonal basis in a Hilbert space $H$. Then for every vector $(c_i)_{i\in I}\in l^2(I)$ there is a unique vector $u\in H$ with Fourier coefficients $c_i$.
+    We write $$u = \sum_{i\in I} c_i u_i.$$
+\end{proposition}
+
+\begin{corollary}
+    We have a linear isomorphism $U:l^2(I)\tilde\rightarrow H$, $U\left((c_i)_{i\in I}\right)=\sum_{i\in I} c_i u_i$.
+    By Parseval's identity this isomorphism is isometric, that is $||Ux|| = ||x||$ $\forall x\in l^2(I)$. By the polarisation
+    identity this is equivalent to $$(Ux,Uy)=(x,y),\tmm\forall x,y\in l^2(I).$$
+    Hence $U$ is unitary.
+\end{corollary}
+
+\begin{corollary}
+    Up to a unitary isomorphism, there is only one infinite dimensional separable Hilbert space, namely, $l^2$.
+\end{corollary}
+
+Given two orthogonal bases $(u_i)_{i\in I}$ and $(v_j)_{j\in J}$ in a Hilbert space $H$, we can decompose $u_i=\sum_{j\in J}(u_i,v_j)v_j$ and using that the sets $\left\{ j:(u_i,v_j)\neq 0 \right\}$ are countable proves the following.
+\begin{remark}
+    Any two orthonormal bases in a Hilbert space have the same cardinality. 
+\end{remark}
+
+\section*{Dual spaces}
+\begin{lemma}
+    Assume $V$ is a normed space over $K=\R$ or $K=\C$. Consider a linear functional $f:V\rightarrow K$. TFAE:
+    \begin{enumerate}
+        \item f is continuous
+        \item f is continuous at 0
+        \item there is $c\geq 0$ s.t. $|f(x)|\leq c||x||$ $\forall x\in V$.
+    \end{enumerate}
+\end{lemma}
+
+If $(1)-(3)$ are satisfies, then $f$ is called a \underline{bounded linear functional}. The smallest such $c\geq 0$ in $(3)$ is called the \underline{norm} of f
+and is denoted by $||f||$. We have 
+
+$$||f|| = \sup_{x\neq 0}\frac{|f(x)|}{||x||}= \sup_{||x||=1}|f(x)| = \sup_{||x||\leq 1}|f(x)|.$$
+\begin{proposition}
+    For every normed vector space $V$ over $K=\R$ or $K=\C$, the bounded linear functionals on $V$ forms a Banach space $V^*$.
+\end{proposition}
+\begin{theorem}(\underline{\textbf{Riesz representation theorem}})
+    Assume $H$ is a Hilbert space. Then every $f\in H^*$, where $H^*$ is the dual-space of $H$, containing continuous, linear functionals, has the form $$f(x) = (x,y)$$
+    for a uniquely determined $y\in H$. Moreover, we have $||f|| = ||y||$.
+    
+\end{theorem}
+For every Hilbert space $H$ we can define the \underline{conjugate Hilbert space} $\overline{H}$. Its elements are the symbols $\bar x$ for $x\in H$.
+The linear structure and inner products are defined by $$\bar x + \bar y = \overline{x+y},\tmm c\bar x = \overline{\bar c x},\tmm (\bar x,\bar y) = \overline{(x,y)}=(y,x).$$
+\begin{corollary}
+    For every Hilbert space $H$, we have an isometric isomorphism $\overline{H}\tilde\rightarrow H^*,$ $\bar x \mapsto (\cdot,x).$
+\end{corollary}

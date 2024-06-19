@@ -1,0 +1,27 @@
+\section{Complex and signed measures}
+Assume $(X,\B)$ is a measurable space. 
+\begin{definition}
+    A \underline{complex measure} on $(X,\B)$ is a map $\nu:\B\rightarrow \C$ s.t. $\nu(\emptyset)=0$ and $\nu(\bigcup_{n=1}^\infty A_n) = \sum_{n=1}^{\infty}\nu(A_n)$
+    for any disjoint $A_n\in\B$ where the series is assumed to bee absolutely convergent. If $\nu$ takes values in $\R$, then $\nu$ is called a \underline{finitely signed measure}.
+\end{definition}
+
+\begin{remark}
+    More generally, a signed measure is allowed to take values in $\R\cup\{+\infty\}$ or $\R\cup\{-\infty\}$. Given a complex measure $\nu$ on $(X,\B )$, its 
+    \underline{total variation} is the map $$|\nu|:\B\rightarrow [0,+\infty]$$
+    defined by $$|\nu|(A) = \sup\left\{ \sum_{n=1}^{N}|\nu(A_n)|\omm:\omm A=\bigcup_{n=1}^N A_n,\tmm A_n\in\B,\tmm A_n\cap A_m=\emptyset \omm \text{  for }n\neq m \right\}$$
+\end{remark}
+
+\begin{proposition}
+    $|\nu|$ is a finite measure on $(X,\B)$.
+\end{proposition}
+
+\begin{definition}
+    If $(X,\B,\mu)$ is a measure space, $\nu$ is a complex measure on $(X,\B)$, then we say that $\nu$ is \underline{absolutely continuous} with regards to $\mu$
+    and write $\nu<<\mu$, if $\nu(A)=0$ whenever $A\in\B$ and $\mu(A)=0$. Equivalently $|\nu|<<\mu$.
+\end{definition}
+
+\begin{theorem}\underline{\textbf{Radon-Nikodym theorem for complex measures}}
+
+    Assume $(X,\B,\mu)$ is a measurable space, $\nu$ is a complex measure on $(X,\B)$, $\nu<<\mu$. Then there 
+    is a unique $f\in L^1(X,d\mu)$ s.t. $d\nu = fd\mu$.
+\end{theorem}

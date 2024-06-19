@@ -1,0 +1,72 @@
+\section{Random variables and stochastic processes}
+
+Assume $(X,\B,\PP)$ is a probability measure space. Assume $(Y,\CC)$ is a measurable space. 
+
+A measurable map $f:X\rightarrow Y$ is called a \underline{random variable}. For $A\in\CC$, define 
+
+\[\PP(f\in A) \defeq \PP(f^{-1}(A))=\left(f_* \PP\right)(A), \] 
+as the probability that $f$ takes values in $A$. The measure $f_*\PP$ is called the \underline{probability distribution} of $f$.
+
+
+\begin{definition}
+    A \underline{stochastic process} is a collection of random variables $(f_t:X\rightarrow Y)_{t\in T}$, $T$ stands for "time". Typically, $T=\N,\mathbb Z, \R_+$ or $\R$. 
+
+    Given different $t_1,\ldots,t_n\in T$, we can consider the \underline{disjoint distribution} of $f_{t_1},\ldots, f_{t_n}$ as the measures
+    \[\mu_{t_1,\ldots,t_n} = \left(f_{t_1}\times\ldots\times f_{t_n}\right)_*\PP, \hspace{3mm}\text{ on }(Y^n,\CC^n).\]
+    Thus,
+    \[\mu_{t_1,\ldots,t_n}(A_1\times\ldots\times A_n) = \PP(f_{t_1}\in A_1,\ldots,f_{t_n}\in A_n)\defeq \PP\left(\bigcap_{k=1}^n f_{t_k}^{-1}(A_k)\right).\]
+\end{definition}
+
+
+\begin{theorem}
+    Assume $T$ is a set, and for all different $t_1,\ldots t_n$ we are given a Borel probability measure $\mu_{t_1,\ldots,t_n} $ on $\R^n$ s.t.
+    \begin{enumerate}
+        \item if $\delta\in S_n$ ($S_n$ is the permutation group) and $A_1,\ldots, A_n\in \B(\R)$, then 
+        \[\mu_{t_1,\ldots,t_n}(A_1\times\ldots\times A_n) = \mu_{t_{\delta(1)},\ldots,t_{\delta(n)}}(A_{\delta(1)}\times\ldots\times A_{\delta(n)}) \]
+        \item Additionally, \[\mu_{t_1,\ldots,t_n,s_1,\ldots, s_m}\left(A_1\times\ldots\times A_n\bigtimes_{k=1}^m \R\right) = \mu_{t_1,\ldots,t_n}(A_1\times\ldots\times A_n)\]
+    \end{enumerate}
+    for all different $t_1,\ldots,t_n,s_1,\ldots, s_m\in T$ and $A_1,\ldots,A_n\in\B(\R)$.\\[3mm]
+
+    Then there is a probability measure space $(X,\B,\PP)$ and a stochastic process $(f_t:X\rightarrow \R)_{t\in T}$ s.t. $\mu_{t_1,\ldots,t_n}$ is the joint distribution of $f_{t_1},\ldots f_{t_n}$ for all different $t_1,\ldots,t_n\in T$.
+\end{theorem}
+
+\begin{remark}
+    Instead of $\R$ we could have taken any complete separable metric space. Or we could have taken any metric space, but we would have to require that $\mu_{t_1,\ldots,t_n}$ are regular measures. 
+\end{remark}
+
+
+\begin{definition}
+    Random variables $f_1,\ldots f_n:X\rightarrow Y$ are called \underline{independent} if 
+    \[\PP(f_1\in A_1,\ldots, f_n\in A_n)=\PP\left(\bigcap_{k=1}^n f_k^{-1}(A_k)\right)=\PP(f_1\in A_1)\ldots\PP(f_n\in A_n).\]
+    In other words, this means that if the joint distribution of $f_1,\ldots f_n$ is the product of distributions of $f_1,\ldots f_n$.
+    For such measures the theorem gives the following results: \\[4mm]
+    Assume we are given a Borel probability measure $\mu_t$ on $\R$ or any other complete separable metric space for $t\in T$. Then there is a unique measure 
+    \[\PP = \prod_{t\in T}\mu_t\hspace{2mm} \text{  s.t.  }\hspace{2mm} (\pi_{T,F})_*\PP = \prod_{t\in T}\mu_t \omm \text{  for all finite  }\omm F\subset T.\]
+\end{definition}
+
+\begin{example}
+    Consider the process of tossing a coin. Write $0$ for tail and $1$ for head. We can model the process as follows:
+
+    \[X = \prod_{n=1}^\infty \{0,1\},\tmm \PP = \prod_{n=1}^\infty \nu,\tmm \text{ where }\tmm \nu = \frac{1}{2}\delta_0+\frac{1}{2}\delta_1.\]
+    With $\B = \prod_{n=1}^\infty \mathcal P (\{0,1\})$.\\[3mm]
+    Then if we define $f_n:X\rightarrow \{0,1\}\omm,\omm f_n(\ux)=x_n\omm,\tmm \text{for } \ux=(x_m)_{m=1}^\infty$.
+    For a.e. $\ux\in X$ we have 
+
+    \[\frac{1}{n}\sum_{k=1}^n f_{n}(\ux)\xrightarrow[n\rightarrow\infty]{}\frac{1}{2} \hspace{8mm} (\textbf{Law of large numbers}).\]
+    If Kolmogorov's theorem requires some regularity assumption, infinite products of probability spaces always exists:
+\end{example}
+
+
+\begin{theorem}
+    Assume $((X_i,\B_i,\mu_i))_{i\in I}$ is a collection of probability measure spaces. Consider $X=\prod_{i\in I} X_i,\omm \B=\prod_{i\in I}\B_i$. Then there is a unique measure $\mu$
+    on $(X,\B)$ s.t. $(\pi_{I,F})_*\mu = \prod_{i\in F}\mu_i$ for all finite $F\in I$.\\[2mm]
+    In other words, 
+    \[\mu\left(\prod_{i\in F}A_i\times \prod_{j\in J\backslash F}X_j\right) = \prod_{i\in F}\mu_i(A_i).\]
+\end{theorem}
+
+
+\begin{remark}
+    One nice property worth minding used in the proof of this theorem is that when proving $\sigma$-additivity for $B=\bigcap_{n=1}^\infty B_n,\tmm B_n\cap B_m=\emptyset$ for $n\neq m$. Proving that, 
+    \[\mu(B)=\sum_{n=1}^\infty \mu(B_n)\Leftrightarrow \mu(A_n)\xrightarrow[n\rightarrow\infty]{}0\omm,\hspace{3mm}A_n=B\backslash \left(\bigcup_{m=1}^{n-1}B_m\right),\tmm A_n\downarrow\emptyset,\]
+    for a pre-measure on an \underline{algebra} of sets. Hence, this gives us an alternative method of proving $\sigma$-additivity.  
+\end{remark}

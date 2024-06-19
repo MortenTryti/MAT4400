@@ -1,0 +1,86 @@
+\section{Measurable Mappings}
+
+    We consider maps $T:X\rightarrow X'$ between two measurable spaces $(X,\A)$ and $(X',\A')$ which respects the measurable 
+    structures and the $\sigma$-algbras on $X$ and $X'$. These maps are useful as we can transport a measure $\mu$, defined on $(X,\A)$, to $(X',\A')$.
+
+    
+
+    \begin{definition}
+        Let $(X,\A)$, $(X',\A')$ be measurable spaces. A map $T:X\rightarrow X'$ is called $\A/\A'$-measurable if the pre-image of every measurable set is a measurable set: 
+        \begin{align}
+        T^{-1}(A')\in \A,\hspace{3mm} \forall A'\in\A'.    
+        \end{align}
+
+    \end{definition}
+    \begin{itemize}
+        \item A $\mathcal B(\mathbb R^n)/\mathcal B(\mathbb R^m)$ measurable map is often called a Borel map. 
+        \item The notation $T:(X,\A)\rightarrow (X',\A')$ is often used to indicate measurability of the map $T$.
+    \end{itemize}
+
+    \begin{lemma}
+        Let $(X,\A)$, $(x',\A')$ be measurable spaces and let $\A' = \sigma(\G')$. Then $T:X\rightarrow X'$ is $\A/\A'$-measurable iff $T^{-1}(\G')\subset \A$, i.e. if 
+        \begin{align}
+            T^{-1}(G')\in\A,\hspace{2mm} \forall G'\in\G'.
+        \end{align} 
+    \end{lemma}
+
+
+	\begin{theorem}
+
+        Let $(X_i,\A_i),\hspace{2mm}i=1,2,3$, be measurable spaces and $T:X_1\rightarrow X_2$, $S:X_2\rightarrow X_3$ be $\A_1/\A_2$ and $\A_2/\A_3$-measurable maps respectivly. Then $S\circ T:X_1\rightarrow X_3$ is $\A_1/\A_3$-measurable. 
+
+	\end{theorem}
+
+    \begin{corollary}
+        Every continuous map betwen metric spaces is a Borel map.
+    \end{corollary}
+
+    \begin{definition}
+        \textbf{(and lemma)}
+        Let $(T_i)_{i\in I}$, $T_I:X\rightarrow X_i$, be arbitrarily many mappings from the same space X into measurable spaces $(X_i,\A_i).$ The smallest $\sigma$-algebra on $X$ that makes all $T_i$ simultanously measurable is 
+        \begin{align}
+            \sigma(T_i:i\in I) := \sigma \left( \bigcup_{i\in I}T_i^{-1}(\A_i)\right)
+        \end{align}
+
+    \end{definition}
+	
+    \begin{corollary}
+        A function $f:(X,\B)\rightarrow \mathbb R$ is measurable if $f((a,+\infty))\in \B,\hspace{2mm}\forall a\in \mathbb R.$
+    \end{corollary}
+
+    \begin{corollary}
+        Assume $(X,\B)$ is a measurable space, $(Y,d)$ is a metric space, $(f_n:(X,\B)\rightarrow Y)_{n=1}^\infty$ is a sequence of measurable maps.
+        Assume this sequence of images $(f_n(x))_{n=1}^\infty$ is convergent in $Y$ $\forall x\in X$.
+        Define \begin{align}
+            f:X\rightarrow Y,\hspace{2mm}\text{by  } f(x)=\lim_{n\rightarrow \infty} f_n(x).
+        \end{align}
+        Then f is measurable.
+    \end{corollary}
+
+    \begin{theorem}
+        Let $(X,\A)$, $(X',\A')$ be measurable spaces and $T:X\rightarrow X'$ be an $\A/\A'$-measurable map. For every measurable $\mu$ on $(X,\A)$, 
+        \begin{align}
+            \mu'(A') := \mu (T^{-1}(A')),\hspace{3mm} A'\in \A',
+        \end{align}
+        defines a measure on $(X',\A')$.
+    \end{theorem}
+
+    \begin{definition}
+        The measure $\mu'(\cdot)$ in the above theorem is called the push forward or image measure of $\mu$ under $T$ and it is denoted as 
+        $T(\mu)(\cdot)$, $T_{*\mu}(\cdot)$ or $\mu\circ T^{-1}(\cdot)$.
+    \end{definition}
+
+    \begin{theorem}
+        If $T\in \mathbb R^{n\times n} $ is an orthogonal matrix, then $\lambda^n = T(\lambda^n).$
+    \end{theorem}
+
+    \begin{theorem}
+        Let $S\in\mathbb R^{n\times n}$ be an invertible matrix. Then 
+        \begin{align}
+        S(\lambda^n) = |\det S^{-1}|\lambda^n = |\det S|^{-1}\lambda^n.    
+        \end{align}
+    \end{theorem}
+
+    \begin{corollary}
+        Lebesgue measure is invariant under motions: $\lambda^n=M(\lambda^n)$ for all motions $M$ in $\mathbb R^n$. In particular, congruent sets have the same measure. Two sets of points are called congruent if, and only if, one can be transformed into the other by an isometry
+    \end{corollary}

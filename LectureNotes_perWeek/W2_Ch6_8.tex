@@ -1,0 +1,278 @@
+\section{Existence of Measures}
+\begin{theorem}[Carathéodory]
+    Let \(S\subset P(X)\) be a semi-ring and \(\mu:S\rightarrow[0,\infty)\) a pre-measure. Then \(\mu\) has an extension to a measure \(\mu^{*}\)
+    on \(\sigma(S)\), i.e. that \(\mu(s) = \mu^{*}(s), \ \forall \ s\in \sigma(S)\). 
+    
+    Also, if \(S\) contains an exhausting sequence, \(S_n\uparrow X\), s.t. \(\mu(S_n) < \infty\), then the extension is 
+    unique.
+\end{theorem}
+\begin{proof}[Proof (outline)]
+    Firstly, let us define an outer measure. 
+    \begin{definition}[Outer measure]
+        An outer measure is a function \(\mu^{*}: P(X) \rightarrow [0,\infty)\) with the following properties:
+        \begin{enumerate}
+            \item \(\mu^{*}(\emptyset) = 0\),
+            \item \(A\subset B \Rightarrow u^{*}(A) \leq \mu^{*}(B)\),
+            \item \(\mu^{*}\left( \bigcup\limits_{n\in\mathbb{N}} A_n \right)\leq \sum\limits_{n\in\mathbb{N}} \mu^{*}(A_n)\),
+        \end{enumerate}
+    \end{definition}
+    and define for each \(A\subset X\) the family of countable \(S\)\emph{-coverings}:
+    \begin{align*}
+        C(A) \eqdef \left\{(S_n)_{n\in\mathbb{N}} \subset S : \bigcup\limits_{n\in\mathbb{N}} S_n\supset A\right\},
+    \end{align*}
+    and the set function
+    \begin{align*}
+        \mu^{*}(A) \eqdef \text{inf}\left\{ \sum\limits_{n\in\mathbb{N}} \mu(S_n): (S_n)_{n\in\mathbb{N}}\in C(A)\right\}.
+    \end{align*}
+    \textbf{Step 1: Claim: } \(\mu^{*}(A)\)\emph{ is an outer measure.}
+    \begin{proof} \ \\
+        \begin{enumerate}
+            \item \(C(\emptyset) = \left\{ \text{any sequence in }S\text{ containing }\emptyset  \right\}\Rightarrow \mu^{*}(\emptyset) = 0\).
+            \item Assume \(A\subset B\). Then \(C(A) \subset C(B) \Rightarrow \mu^{*}(A) \leq \mu^{*}{B}\).
+            \item If \(\mu^{*}(A_n) = \infty\) for some \(n\), then there is nothing to prove. Thus, assume \(\mu^{*}(A_n) < \infty \ \forall n\).
+            Fix \(\epsilon > 0\), and for every \(n\) choose \(A_{n_k}\in S\) s.t.
+            \begin{align*}
+                A_n \subset \bigcup\limits_{k\in\mathbb{N}} A_{n_k}, \ 
+                \sum\limits_{k\in\mathbb{N}}\mu^{*}(A_{n_k}) < \mu^{*}(A_n) + \frac{\epsilon}{2^n}.
+            \end{align*}
+            Then
+            \begin{align*}
+                \bigcup\limits_{n\in\mathbb{N}} A_n \subset \bigcup\limits_{k\in\mathbb{N}}\bigcup\limits_{n\in\mathbb{N}} A_{n_k},
+            \end{align*}
+            so 
+            \begin{align*}
+                \mu^{*}\left( \bigcup\limits_{n\in\mathbb{N}} A_n\right) \leq& \sum\limits_{n\in\mathbb{N}}\sum\limits_{k\in\mathbb{N}}\mu\left(A_{n_k}\right) \\
+                <& \sum\limits_{n\in\mathbb{N}}\left( \mu^{*}(A_n) + \frac{\epsilon}{2^n}\right) \\ 
+                =& \sum\limits_{n\in\mathbb{N}}\mu^{*}(A_n) + \epsilon.
+            \end{align*}
+            As \(\epsilon\) was arbitrarily, we get that
+            \begin{align*}
+                \mu^{*}\left( \bigcup\limits_{n\in\mathbb{N}} A_n\right) \leq \sum\limits_{n\in\mathbb{N}}\mu^{*}(A_n),
+            \end{align*}
+        \end{enumerate}
+        so \(\mu^{*}\) fulfills all the conditions for being an outer measure.
+    \end{proof}
+    \textbf{Step 2:} \emph{Showing that \(\mu^{*}\) extends \(\mu\), i.e. \(\mu^{*}(s) = \mu(s) \ \forall s\in S\).}
+    
+    \textbf{Step 3:} \emph{Define \(\mu^{*}\)-measurable sets}
+    \begin{align*}
+        \Sigma^{*} \eqdef \left\{ A \subset X: \mu^{*}(Q) = \mu^{*}(Q\cap A) + \mu^{*}(Q \backslash A) \ \forall \ Q \subset X \right\}
+    \end{align*}
+
+    \textbf{Step 4:} \emph{Show that \(\mu\vert_{\Sigma^{*}}\) is a measure. In particular, \(\mu\vert_{\sigma(S)}\) is a measure which extends \(\mu\).}
+    
+\end{proof}
+
+\section{Measurable Mappings}
+
+    We consider maps $T:X\rightarrow X'$ between two measurable spaces $(X,\mathcal A)$ and $(X',\mathcal A')$ which respects the measurable 
+    structurs, the $\sigma$-algbras on $X$ and $X'$. These maps are useful as we can transport a measure $\mu$, defined on $(X,\mathcal A)$, to $(X',\mathcal A')$.
+
+    
+
+    \begin{definition}
+        Let $(X,\mathcal A)$, $(X',\mathcal A')$ b measurable spaces. A map $T:X\rightarrow X'$ is called $\mathcal A/\mathcal A'$-measurable if the pre-imag of every measurable set is a measurable set: 
+        \begin{align}
+        T^{-1}(A')\in \mathcal A,\hspace{3mm} \forall A'\in\mathcal A'.    
+        \end{align}
+
+    \end{definition}
+    \begin{itemize}
+        \item A $\mathcal B(\mathbb R^n)/\mathcal B(\mathbb R^m)$ measurable map is often called a Borel map. 
+        \item The notation $T:(X,\mathcal A)\rightarrow (X',\mathcal A')$ is often used to indicate measurability of the map $T$.
+    \end{itemize}
+
+    \begin{lemma}
+        Let $(X,\mathcal A)$, $(x',\mathcal A')$ be measurable spaces and let $\mathcal A' = \sigma(\mathcal G')$. Then $T:X\rightarrow X'$ is $\mathcal A/\mathcal A'$-measurable iff $T^{-1}(\mathcal G')\subset \mathcal A$, i.e. if 
+        \begin{align}
+            T^{-1}(G')\in\mathcal A,\hspace{2mm} \forall G'\in\mathcal G'.
+        \end{align} 
+    \end{lemma}
+
+
+	\begin{theorem}
+
+        Let $(X_i,\mathcal A_i),\hspace{2mm}i=1,2,3$, be measurable spaces and $T:X_1\rightarrow X_2$, $S:X_2\rightarrow X_3$ be $\mathcal A_1/\mathcal A_2$ and $\mathcal A_2/\mathcal A_3$-measurable maps respectivly. Then $S\circ T:X_1\rightarrow X_3$ is $\mathcal A_1/\mathcal A_3$-measurable. 
+
+	\end{theorem}
+
+    \begin{corollary}
+        Every continuous map betwen metric spaces is a Borel map.
+    \end{corollary}
+
+    \begin{definition}
+        \textbf{(and lemma)}
+        Let $(T_i)_{i\in I}$, $T_I:X\rightarrow X_i$, be arbitrarily many mappings from the same space X into measurable spaces $(X_i,\mathcal A_i).$ The smallest $\sigma$-algebra on $X$ that makes all $T_i$ simultanously measurable is 
+        \begin{align}
+            \sigma(T_i:i\in I) := \sigma \left( \bigcup_{i\in I}T_i^{-1}(\mathcal A_i)\right)
+        \end{align}
+
+    \end{definition}
+	
+    \begin{corollary}
+        A function $f:(X,\mathcal B)\rightarrow \mathbb R$ is measurable if $f((a,+\infty))\in \mathcal B,\hspace{2mm}\forall a\in \mathbb R.$
+    \end{corollary}
+
+    \begin{corollary}
+        Assume $(X,\mathcal B)$ is a measurable space, $(Y,d)$ is a metric space, $(f_n:(X,\mathcal B)\rightarrow Y)_{n=1}^\infty$ is a sequence of measurable maps.
+        Assume this sequence of images $(f_n(x))_{n=1}^\infty$ is convergent in $Y$ $\forall x\in X$.
+        Define \begin{align}
+            f:X\rightarrow Y,\hspace{2mm}\text{by  } f(x)=\lim_{n\rightarrow \infty} f_n(x).
+        \end{align}
+        Then f is measurable.
+    \end{corollary}
+
+    \begin{theorem}
+        Let $(X,\mathcal A)$, $(X',\mathcal A')$ be measurable spaces and $T:X\rightarrow X'$ be an $\mathcal A/\mathcal A'$-measurable map. For every measurable $\mu$ on $(X,\mathcal A)$, 
+        \begin{align}
+            \mu'(A') := \mu (T^{-1}(A')),\hspace{3mm} A'\in \mathcal A',
+        \end{align}
+        defines a measure on $(X',\mathcal A')$.
+    \end{theorem}
+
+    \begin{definition}
+        The measure $\mu'(\cdot)$ in the above theorem is called the push forward or image measure of $\mu$ under $T$ and it is denoted as 
+        $T(\mu)(\cdot)$, $T_{*\mu}(\cdot)$ or $\mu\circ T^{-1}(\cdot)$.
+    \end{definition}
+
+    \begin{theorem}
+        If $T\in \mathbb R^{n\times n} $ is an orthogonal matrix, then $\lambda^n = T(\lambda^n).$
+    \end{theorem}
+
+    \begin{theorem}
+        Let $S\in\mathbb R^{n\times n}$ be an invertible matrix. Then 
+        \begin{align}
+        S(\lambda^n) = |\det s^{-1}|\lambda^n = |\det S|^{-1}\lambda^n.    
+        \end{align}
+    \end{theorem}
+
+    \begin{corollary}
+        Lebesgue measure is invariant under motions: $\lambda^n=M(\lambda^n)$ for all motions $M$ in $\mathbb R^n$. In particular, congruent sets have the same measure. Two sets of points are called congruent if, and only if, one can be transformed into the other by an isometry
+    \end{corollary}
+
+    
+\section{Measurable Functions}
+
+A \textit{measurable function} is a measurable map $\map{u}{X}{ \R}$ from some measurable space $(X,\A)$
+ to $(\R,\Borel{1})$.
+They play central roles in the theory of integration. \\
+
+We recall that $\map{u}{X}{\R} $ is $\A/\Borel{1}$-measurable if \begin{align}
+    u^{-1}(B)\in\A,\hspace{2mm}\forall B\in \Borel{1}.
+\end{align}
+
+Moreover from a lemma from chapter 7, we actually only need to show that \begin{align}
+    u^{-1}(G)\in\A,\hspace{2mm} \forall G\in\mathcal G \text{ where } \mathcal G \text{ generates } \Borel{1}.
+\end{align} 
+
+\begin{proposition}
+    $\hspace{2mm}$
+    \begin{itemize}
+        \item[1] If $f,g:(X,\B)\rightarrow \mathbb C$ are measurable, then the function $f+g$, $f\cdot g$, $cf,\hspace{2mm}(c\in\mathbb C)$
+         are measurable.
+         \item[2] If $b:\mathbb C\rightarrow \mathbb C$ is Borel and $b:(\mathbb C,\B)\rightarrow \mathbb C$ is measurable, then $b\circ f$ is measurable.
+         \item[3] If $f(x)=\lim_{n\rightarrow \infty}f_n(x),\hspace{2mm}x\in X$ and $f_n$ are measurable, then $f$ is measurable.
+         \item[4] If $X=\bigcup_{n=1}^\infty A_n,\hspace{2mm} (A_n\in \B)$, $f|_{A_n}:(A_n,\B_{A_{n}})\rightarrow \mathbb C$ is measurable $\forall n$, then $f$ is measurable.
+    \end{itemize}
+\end{proposition}
+
+\begin{definition}
+    Given a measurable space $(X,\B)$, a measurable function $f:(X,\B)\rightarrow \C$ is called simple if 
+    \begin{align}
+    f(x) = \sum_{k=1}^{N}c_k\mathds 1_{A_k}(x),    
+    \end{align}
+for some $c_k\in\C$, $A_k\in \B$, where $\mathds 1$ is the characteristic function,
+
+\begin{align}
+    \mathds 1_{A}(x)= \begin{cases} 
+        1 & \text{if } x\in A \\
+        0 & \text{if } x\notin A.
+     \end{cases}
+\end{align}
+
+The representation of simple function is \textbf{not} unique. We denote the standard representation of
+$f$ by \begin{align}
+    f(x) = \sum_{n=0}^{N}z_n\mathds 1_{B_n}(x),\hspace{3mm} N\in\mathbb N,\hspace{1mm} z_n\in\R,\hspace{1mm} B_n\in\A,\hspace{1mm} X=\bigcup_{n=1}^N B_n,\hspace{2mm}\text{for } B_n\cap B_m=\emptyset,\hspace{2mm} n\neq m.
+\end{align}
+The set of simple functions is denoted $\mathcal E(\A)$ of $\mathcal E$. 
+
+\end{definition}
+\begin{definition}
+    Assume $\mu$ is a measure on $(X,\B)$. Given a \textit{positive} simple function
+    \begin{align}
+        f = \sum_{k=1}^{N}c_k\mathds 1_{A_k},\hspace{4mm} (c_k\geq 0).
+    \end{align}
+    We define \begin{align}
+        \int_X fd\mu =\sum_{k=1}^{n}c_k\mu(A_k)\in [0,+\infty].
+    \end{align}
+    We also denote this by $I_\mu(f)$.
+\end{definition}
+
+\begin{lemma}
+    This is well defined, that is, $\int_x fd\mu$ does not depend on the presentation of the simple function $f$.
+\end{lemma}
+
+\begin{properties}
+    For every positive simple function
+    \begin{center}
+\begin{itemize}
+    \item[1] $\int_X cfd\mu = c\int_Xfd\mu,\hspace{4mm}\text{for only } c\geq 0$
+    \item[2] $\int_X(f+g)d\mu = \int_Xfd\mu + \int_X gd\mu$.
+\end{itemize}
+\end{center}
+\end{properties}
+
+\begin{corollary}
+    If $f\geq g\geq 0$ are simple functions, then 
+    \begin{align}
+        \int_X fd\mu \geq \int_X g d\mu.
+    \end{align}
+\end{corollary}
+
+\begin{definition}
+    If $f:X\rightarrow \left[0,+\infty\right)$ is measurable, then we define 
+    \begin{align}
+        \int_X fd\mu = \sup\left\{  \int_X gd\mu \hspace{1mm} :\hspace{1mm} f\geq g\geq 0,\hspace{2mm} g\text{ is simple}\right\}
+    \end{align}
+\end{definition}
+\begin{remark}
+    This means that any measurable function can be approximated by simple functions.
+\end{remark}
+
+\begin{properties}
+    Measurable functions like this have the following properties 
+    \begin{itemize}
+        \item[1] $\int_X cfd\mu = c\int_X fd\mu,\hspace{3mm} \forall c\geq 0. $
+        \item[2] If $f\geq g\geq 0$, then $\int_X fd\mu\geq\int_X gd\mu$ for any measurable $g,f$.
+        \item[3] If $f\geq 0$ is simple, then $\int_X fd\mu $ is the same value as obtained before.    
+    \end{itemize}
+\end{properties}
+
+To advance in measure theory we consider measurable functions $$f:X\rightarrow [0,+\infty].$$ Measurability is understood w.r.t the $\sigma-$algebra
+ $\B([0,+\infty])$ generated by $\B(\left[0,+\infty\right))$ and $\left\{+\infty\right\}$. In other words, $A\subset[0,+\infty]\in B([0,+\infty])$ iff $A\cap [0,+\infty)\in \B([0,+\infty)$.
+\begin{remark}
+    Hence $f:X\rightarrow [0,+\infty]$ is measurable iff $f^{-1}(A)$ is measurable $\forall A\in \B([0,+\infty))$.
+\end{remark}
+
+\begin{definition}
+    For measurable functions $f_X\rightarrow [0,+\infty]$, we define \begin{align}
+        \int_X fd\mu = \sup\left\{\int_xgd\mu \hspace{1mm}:\hspace{1mm} f\geq g\geq 0\hspace{1mm}:\hspace{1mm} g \text{ is simple}\right\}\in[0,+\infty].
+    \end{align}
+\end{definition}
+
+\begin{theorem}{\underline{\textbf{Monotone convergence theorem}}}
+    Assume $(X,\B,\mu)$ is a measure space, $(f)_{n=1}^\infty$ is an increasing sequence of measurable positive functions $f_n:X\rightarrow [0,+\infty]$. Define $f(x)=\lim_{n\rightarrow \infty}f_n(x)$. 
+    Then $f$ is measurable and  \begin{align}
+        \int_X fd\mu = \lim_{n\rightarrow \infty} \int_X f_nd\mu.
+    \end{align}
+    
+\end{theorem}
+
+\begin{theorem}
+    Assume $(X,\B)$ is a measurable space and $f:X\rightarrow [0,+\infty]$ is measurable. Then there are simple functions $g_n$, s.t. \begin{align*}
+        0\leq g_1\leq g_2\leq\ldots \hspace{2mm},\hspace{2mm} g_n(x)\rightarrow f(x),\hspace{2mm}\forall x\in X.
+    \end{align*}
+    Moreover, if $f$ is bounded, we can choose $g_n$ s.t. the convergence is uniform, that is, \begin{align}
+        \lim_{n\rightarrow\infty}\sup_{x\in X}|g_n(x)-f(x)|=0.
+    \end{align}
+\end{theorem}

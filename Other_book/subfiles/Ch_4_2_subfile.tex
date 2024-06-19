@@ -1,0 +1,39 @@
+\section{Hahn-Banach theorem}
+
+\begin{theorem}(\underline{\textbf{Hahn-Banach theorem}})
+    Assume $V$ is a real vector space, $V_0\subset V$ a subspace, $\phi:V\rightarrow \R$ a convex function and $f:V_0\rightarrow \R$ a linear functional
+     s.t. $f\leq \phi$ on $V_0$. Then $f$ can be extended to a linear functional $F$ on $V$ s.t. $F\leq\phi$.
+    
+\end{theorem}
+
+\begin{theorem}(\underline{\textbf{Hahn-Banach theorem 2}})
+    Assume $V$ is a real or complex vector space, $p$ is a seminorm on $V$, $V_0\subset V$ a subspace and $f$ is a linear
+    functional on $V_0$ s.t. $|f(x)|\leq p(x)$ $\forall x\in V_0$. Then $f$ can be extended to a linear functional $F$ on $V$ s.t.
+    $|F(x)|\leq p(x)$ $\forall x\in V$.
+\end{theorem}
+
+\begin{corollary}
+    Assume $V$ is a normed vector space (real or complex), $V_0\subset V$ a subspace and $F\in V_0^*$. Then there is $F\in V^*$ s.t.
+    $\left.F\right|_{V_0}=f$ and $||F||=||f||$.
+\end{corollary}
+
+\begin{corollary}
+    Assume $V$ is a normed space and $x\in V, x\neq 0$. Then there is $F\in V^*$ s.t. $||F||=1$ and $F(x) = ||x||$.
+\end{corollary}
+Such an $F$ is called a supporting functional of $x$.
+
+\begin{definition}
+    A normed space $V$ is called \underline{reflexive} if $V^{**}=V$.
+\end{definition}
+\begin{remark}
+    This is stronger than requiring $V\cong V^{**}$.
+\end{remark}
+\begin{example}
+    \begin{enumerate}
+        \item Every f.d. normed vector space $V$ is reflexive for dimensional reasons $\dim V^{**} = \dim V^* = \dim V$.
+        \item Every Hilbert space $H$ is reflexive. By Riesz' theorem every bounded linear functional $f$ on $\overline H$ has the form
+        $$f(\bar x) = (\bar x,\bar y)=(y,x)\tmm y\in H,$$
+        which means that $f=y$ in $H^{**}$. As we will later see, the spaces $L^p(X,d\mu)$, with $\mu$ $\sigma$-finite and $1<p<\infty$, are reflexive. The
+        spaces $L^1(X,d\mu)$ and $L^\infty(X,d\mu)$ are usually not reflexive.
+    \end{enumerate}
+\end{example}

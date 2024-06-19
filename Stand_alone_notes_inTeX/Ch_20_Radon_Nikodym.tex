@@ -1,0 +1,214 @@
+\documentclass{article}
+
+
+% allows special characters (including æøå)
+\usepackage[utf8]{inputenc}
+%\usepackage[english]{babel}
+\usepackage{dsfont}
+\usepackage{subfiles}
+\usepackage{physics,amssymb}  % mathematical symbols (physics imports amsmath)
+\include{amsmath}
+\usepackage{graphicx}         % include graphics such as plots
+\usepackage{xcolor}           % set colors
+\usepackage{hyperref}         % automagic cross-referencing (this is GODLIKE)
+\usepackage{listings}         % display code
+\usepackage{subfigure}        % imports a lot of cool and useful figure commands
+\usepackage{float}
+%\usepackage[section]{placeins}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{subfigure}
+\usepackage{tikz}
+\usepackage{cleveref} % for \cref
+\usepackage{enumitem} % to enumerate with a), b), ... : [label=(\alph*)] 
+\usepackage{cancel}
+\usepackage{slashed}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{comment}
+\usepackage{bbm} % Allows for the characteristic function of a set
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{properties}[theorem]{Properties}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{remark}{Remark}
+\newcommand{\eqdef}{\mathrel{\mathop:}=}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\usepackage{stmaryrd}
+
+
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+\usetikzlibrary{quantikz}
+
+% defines the color of hyperref objects
+% Blending two colors:  blue!80!black  =  80% blue and 20% black
+
+
+\newcommand{\A}{\mathscr{A}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\omm}{\hspace{1mm}}
+\newcommand{\tmm}{\hspace{2mm}}
+\newcommand{\one}{\mathds{1}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\Borel}[1]{\mathscr B(\mathbb R^{#1})}
+\newcommand{\map}[3]{#1:#2\rightarrow #3}
+\newcommand{\highlight}[2][yellow]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}
+\newcommand*{\itemtag}[1]{\hfill (\emph{#1})}
+
+\lstset{frame=tb,
+  language=c++,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{orange},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4
+}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}}
+%% USEFUL LINKS:
+%%
+%%   UiO LaTeX guides:        https://www.mn.uio.no/ifi/tjenester/it/hjelp/latex/
+%%   mathematics:             https://en.wikibooks.org/wiki/LaTeX/Mathematics
+
+%%   PHYSICS !                https://mirror.hmc.edu/ctan/macros/latex/contrib/physics/physics.pdf
+
+%%   the basics of Tikz:       https://en.wikibooks.org/wiki/LaTeX/PGF/Tikz
+%%   all the colors!:          https://en.wikibooks.org/wiki/LaTeX/Colors
+%%   how to draw tables:       https://en.wikibooks.org/wiki/LaTeX/Tables
+%%   code listing styles:      https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
+%%   \includegraphics          https://en.wikibooks.org/wiki/LaTeX/Importing_Graphics
+%%   learn more about figures  https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
+%%   automagic bibliography:   https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management  (this one is kinda difficult the first time)
+%%   REVTeX Guide:             http://www.physics.csbsju.edu/370/papers/Journal_Style_Manuals/auguide4-1.pdf
+%%
+%%   (this document is of class "revtex4-1", the REVTeX Guide explains how the class works)
+
+
+%%%%%%%%%%%%% CREATING THE pdf FILE USING LINUX IN THE TERMINAL %%%%%%%%%%%%%
+%% pdflatex filename.tex && filename.tex && open filename.pdf
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% USING FOOTNOTE COMMAND: %%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% pdflatex filename.tex && bibtex filename.tex && pdflatex filename.tex && pdflatex filename.tex && open filename.pdf
+
+
+\newif\ifdetailed
+\detailedtrue % Detailed version
+% \detailedfalse % Only important stuff version
+%%%% Usage %%%%:
+% \ifdetailed
+% Detailed thing, for example:
+% \begin{align}
+%   U(t) = \int u(x,t)d\mu
+% \end{align}
+% \fi 
+
+
+\setcounter{section}{4}
+\setcounter{theorem}{4}
+
+\begin{document}
+\section{Radon-Nikodym theorem}
+Assume $(X,\B,\mu)$ is a measure space. Are there other measures on $(X,\B)$?
+\begin{example}
+    Take a measurable function $f:X\rightarrow [0,+\infty]$ and define $$\nu(A)=\int_A fd\mu \hspace{5mm}\text{for}\tmm A\in \B.$$
+    This is a measure by the monotone convergence theorem. We write $d\nu = fd\mu$.
+\end{example}
+\begin{proposition}
+    Assume $(X,\B)$ is a measurable space, $\mu$ and $\nu$ are $\sigma$-finite measures on $(X,\B)$. Then there exist $ N\in \B$ and a measurable
+    $f:X\rightarrow [0,+\infty)$ s.t. $\mu(N)=0$ and 
+    $$\nu(A) = \nu(A\cap N)+\int_A fd\mu \hspace{5mm} \forall A\in\B.$$
+
+\end{proposition}
+We can discard the term $\nu(A\cap N)$ as follows.
+
+\begin{definition}
+    Given measures $\mu$ and $\nu$ on $(X,\B)$, we say that $\nu$ is \underline{absolutely continuous} with respect to $\mu$ and write $\nu<<\mu$, if $\nu(A)=0$ whenever $A\in\B$ and $\mu(A)=0$.
+\end{definition}
+One can justify the name with the following lemma
+\begin{lemma}
+    Assume $\mu$ and $\nu$ are measures on $(X,\B)$, $\nu(X)<\infty$. Then $\nu<<\mu$ if and only if $\forall \epsilon>0$ there exists $\delta>0 $ s.t. if $A\in\B$
+    and $\mu(A)<\delta$, then $\nu(A)<\epsilon$.
+\end{lemma}
+\begin{remark}
+    The result is not true for infinite $\nu$.
+\end{remark}
+\begin{theorem}(\underline{\textbf{Radon-Nikodym}})
+    Assume $\mu$ and $\nu$ are $\sigma$-finite measures on a measurable space $(X,\B)$, $\nu<<\mu$. Then there is a measurable function $f:X\rightarrow[0,+\infty)$ s.t. $d\nu = fd\mu$.
+    If $\tilde f$ is another function with the same properties, then $f=\tilde f$  $\mu$-a.e.
+
+    The function $f$ is called the \underline{Radon-Nikodym derivative} of $\nu$ with regard to $\mu$ and is denoted bt $\frac{d\nu}{d\mu}$.
+\end{theorem}
+
+\begin{example}
+    Consider a real-valued function $f\in C^1[a,b]$ s.t. $f'(t)>0$ $\forall t\in [a,b]$, let $c=f(a)$ and $d=f(b)$. We know that for any Riemann
+    integralbe function $g$ on $[c,d]$ we have 
+    $$\int_c^d g(t)dt = \int_a^b g(f(t))f'(t)dt.$$
+    Equivalently, for any Riemann integrable function $g$ on $[a,b]$, we have $$\int_c^d g\circ f^{-1} dt = \int_a^b g f'dt.$$
+    Denote by $\lambda_{[a,b]}$, $\lambda_{[c,d]}$ the Lebesgue measure restricted to the Borel subsets of $[a,b]$ and $[c,d]$ respectivly. Then the integral
+    above implies that $$d((f^{-1})_* \lambda_{[c,d]}) = f'd\lambda_{[a,b]},$$
+    since the integration of $\one_{[\alpha,\beta]}$ gives the same result for any interval $[\alpha,\beta]\subset [a,b]$ and since a finite Borel measure on $[a,b]$
+    is determined by its value on such intervals. Thus $(f^{-1})_* \lambda_{[c,d]}<<\lambda_{[a,b]}$ and $$\frac{d((f^{-1})_* \lambda_{[c,d]})}{d\lambda_{[a,b]}} = f'.$$
+\end{example}
+
+
+\section{Complex and signed measures}
+Assume $(X,\B)$ is a measurable space. 
+\begin{definition}
+    A \underline{complex measure} on $(X,\B)$ is a map $\nu:\B\rightarrow \C$ s.t. $\nu(\emptyset)=0$ and $\nu(\bigcup_{n=1}^\infty A_n) = \sum_{n=1}^{\infty}\nu(A_n)$
+    for any disjoint $A_n\in\B$ where the series is assumed to bee absolutely convergent. If $\nu$ takes values in $\R$, then $\nu$ is called a \underline{finitely signed measure}.
+\end{definition}
+
+\begin{remark}
+    More generally, a signed measure is allowed to take values in $\R\cup\{+\infty\}$ or $\R\cup\{-\infty\}$. Given a complex measure $\nu$ on $(X,\B )$, its 
+    \underline{total variation} is the map $$|\nu|:\B\rightarrow [0,+\infty]$$
+    defined by $$|\nu|(A) = \sup\left\{ \sum_{n=1}^{N}|\nu(A_n)|\omm:\omm A=\bigcup_{n=1}^N A_n,\tmm A_n\in\B,\tmm A_n\cap A_m=\emptyset \omm \text{  for }n\neq m \right\}$$
+\end{remark}
+
+\begin{proposition}
+    $|\nu|$ is a finite measure on $(X,\B)$.
+\end{proposition}
+
+\begin{definition}
+    If $(X,\B,\mu)$ is a measure space, $\nu$ is a complex measure on $(X,\B)$, then we say that $\nu$ is \underline{absolutely continuous} with regards to $\mu$
+    and write $\nu<<\mu$, if $\nu(A)=0$ whenever $A\in\B$ and $\mu(A)=0$. Equivalently $|\nu|<<\mu$.
+\end{definition}
+
+\begin{theorem}\underline{\textbf{Radon-Nikodym theorem for complex measures}}
+
+    Assume $(X,\B,\mu)$ is a measurable space, $\nu$ is a complex measure on $(X,\B)$, $\nu<<\mu$. Then there 
+    is a unique $f\in L^1(X,d\mu)$ s.t. $d\nu = fd\mu$.
+\end{theorem}
+
+
+\end{document}
